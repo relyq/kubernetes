@@ -3,8 +3,6 @@ kind: ClusterIssuer
 metadata:
   name: letsencrypt-dns-production
 spec:
-  dependsOn:
-    - name: cert-manager
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
     email: relyqx@gmail.com
@@ -23,8 +21,6 @@ kind: ClusterIssuer
 metadata:
   name: letsencrypt-dns-staging
 spec:
-  dependsOn:
-    - name: cert-manager
   acme:
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     email: relyqx@gmail.com
