@@ -34,8 +34,8 @@ data:
           enabled: true
 
     additionalArguments:
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
-      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entryPoints.web.address=:80/tcp"
+      - "--entryPoints.websecure.address=:443/tcp"
+      - "--entryPoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entryPoints.web.http.redirections.entryPoint.scheme=https"
       - "--providers.kubernetesingress.namespaces=traefik,nginx"
