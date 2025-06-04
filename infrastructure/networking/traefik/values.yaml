@@ -21,5 +21,5 @@ data:
             permanent: true
 
     additionalArguments:
-      - "--entryPoints.http.http.redirections.entryPoint.to=https"
-      - "--entryPoints.http.http.redirections.entryPoint.scheme=https"
+      - "--entryPoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entryPoints.web.http.redirections.entryPoint.scheme=https"
