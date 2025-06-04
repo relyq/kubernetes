@@ -33,6 +33,12 @@ data:
         tls:
           enabled: true
 
+    entryPoints:
+      web:
+        address: ":80"
+      websecure:
+        address: ":443"
+
     additionalArguments:
       - "--entryPoints.web.address=:80/tcp"
       - "--entryPoints.websecure.address=:443/tcp"
