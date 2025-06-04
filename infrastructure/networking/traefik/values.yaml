@@ -18,12 +18,14 @@ data:
 
     ports:
       web:
+        port: 80
         redirections:
           entryPoint:
             to: websecure
             scheme: https
             permanent: true
       websecure:
+        port: 443
         tls:
           enabled: true
 
