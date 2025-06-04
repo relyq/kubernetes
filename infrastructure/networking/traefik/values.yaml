@@ -13,10 +13,10 @@ data:
         enabled: true
 
     ports:
-      web
+      web:
         redirections:
           entryPoint:
-            to: https
+            to: websecure
             scheme: https
             permanent: true
 
