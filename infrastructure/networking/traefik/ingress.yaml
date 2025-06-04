@@ -2,7 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: traefik-dashboard
-  namespace: kube-system
+  namespace: traefik
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-dns
 spec:
@@ -15,4 +15,6 @@ spec:
         - kind: TraefikService
           name: api@internal
   tls:
+    domains:
+      - main: traefik.relyq.dev
     secretName: traefik-dashboard-tls
