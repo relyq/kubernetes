@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: traefik
+  name: values
   namespace: traefik
 data:
   values.yaml: |
