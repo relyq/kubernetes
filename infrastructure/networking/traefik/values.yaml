@@ -19,6 +19,7 @@ data:
     ports:
       web:
         port: 80
+        expose: true
         redirections:
           entryPoint:
             to: websecure
@@ -26,10 +27,13 @@ data:
             permanent: true
       websecure:
         port: 443
+        expose: true
         tls:
           enabled: true
 
     additionalArguments:
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
       - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
       - "--providers.kubernetesingress.namespaces=traefik,nginx"
