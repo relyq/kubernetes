@@ -33,3 +33,4 @@ data:
       - "--entryPoints.http.http.redirections.entryPoint.to=https"
       - "--entryPoints.http.http.redirections.entryPoint.scheme=https"
       - "--providers.kubernetesingress.namespaces=traefik,nginx"
+      - "--dashboard.enabled=true"
