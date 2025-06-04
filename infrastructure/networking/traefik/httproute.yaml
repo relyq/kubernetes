@@ -12,9 +12,8 @@ spec:
           type: PathPrefix
           value: /
       backendRefs:
-        - name: traefik
-          kind: Service
-          port: 9000
+        - name: api@internal
+          kind: TraefikService
   parentRefs:
     - name: traefik-gateway
       namespace: traefik
