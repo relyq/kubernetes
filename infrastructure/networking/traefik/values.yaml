@@ -8,28 +8,18 @@ data:
     deployment:
       enabled: true
 
-    ingressClass:
-      enabled: true
-      isDefaultClass: true
-
     providers:
       kubernetesGateway:
         enabled: true
 
     ports:
-      http:
-        port: 80
+      web
         redirections:
           entryPoint:
             to: https
             scheme: https
             permanent: true
-      https:
-        port: 443
-        tls:
-          enabled: true
 
     additionalArguments:
       - "--entryPoints.http.http.redirections.entryPoint.to=https"
       - "--entryPoints.http.http.redirections.entryPoint.scheme=https"
-      - "--providers.kubernetesingress.namespaces=traefik,nginx"
