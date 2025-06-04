@@ -1,0 +1,30 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-dns
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: web
+      protocol: HTTP
+      port: 80
+      hostname: "*.relyq.dev"
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: websecure
+      protocol: HTTPS
+      port: 443
+      hostname: "*.relyq.dev"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: wildcard-relyq-dev-tls
+            kind: Secret
+            namespace: traefik
+      allowedRoutes:
+        namespaces:
+          from: All

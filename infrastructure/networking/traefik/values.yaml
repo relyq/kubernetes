@@ -12,6 +12,10 @@ data:
       enabled: true
       isDefaultClass: true
 
+    providers:
+      kubernetesGateway:
+        enabled: true
+
     ports:
       web:
         redirectTo: websecure
