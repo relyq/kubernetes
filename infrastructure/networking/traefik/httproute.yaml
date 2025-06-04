@@ -15,6 +15,6 @@ spec:
         - name: api@internal
           kind: TraefikService
   parentRefs:
-    - name: gateway
+    - name: traefik-gateway
       namespace: traefik
       sectionName: websecure
