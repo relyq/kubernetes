@@ -6,4 +6,3 @@ resources:
   - website-configmap.yaml
 patchesStrategicMerge:
   - deployment-patch.yaml
-  - ingress-patch.yaml
