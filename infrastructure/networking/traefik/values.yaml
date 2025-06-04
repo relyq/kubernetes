@@ -12,6 +12,10 @@ data:
       enabled: true
       isDefaultClass: true
 
+    ingressRoutes:
+      dashboard:
+        enabled: true
+
     providers:
       kubernetesGateway:
         enabled: true
@@ -33,4 +37,3 @@ data:
       - "--entryPoints.http.http.redirections.entryPoint.to=https"
       - "--entryPoints.http.http.redirections.entryPoint.scheme=https"
       - "--providers.kubernetesingress.namespaces=traefik,nginx"
-      - "--dashboard.enabled=true"
