@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: traefik-values
-  namespace: traefik-ingress
+  name: traefik
+  namespace: traefik
 data:
-  traefik-values.yaml: |
+  values.yaml: |
     deployment:
       enabled: true
 
@@ -22,4 +22,4 @@ data:
     additionalArguments:
       - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
-      - "--providers.kubernetesingress.namespaces=traefik-ingress,nginx"
+      - "--providers.kubernetesingress.namespaces=traefik,nginx"
