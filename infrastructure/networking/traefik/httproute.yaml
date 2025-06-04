@@ -13,8 +13,7 @@ spec:
           value: /
       backendRefs:
         - name: traefik
-          kind: Service
-          port: 8080
+          kind: TraefikService
   parentRefs:
     - name: traefik-gateway
       namespace: traefik

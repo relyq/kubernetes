@@ -12,10 +12,6 @@ data:
       enabled: true
       isDefaultClass: true
 
-    ingressRoutes:
-      dashboard:
-        enabled: true
-
     providers:
       kubernetesGateway:
         enabled: true
