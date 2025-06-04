@@ -12,6 +12,10 @@ data:
       enabled: true
       isDefaultClass: true
 
+    providers:
+      kubernetesGateway:
+        enabled: true
+
     ports:
       web:
         redirectTo: websecure
@@ -23,4 +27,3 @@ data:
       - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
       - "--providers.kubernetesingress.namespaces=traefik,nginx"
-      - "--providers.kubernetesGateway.enabled=true"
