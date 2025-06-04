@@ -3,14 +3,16 @@ kind: IngressRoute
 metadata:
   name: traefik-dashboard
   namespace: kube-system
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-dns
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`traefik.relyq.dev`)
-      kind: Rule
+    - kind: Rule
+      match: Host(`traefik.relyq.dev`)
       services:
-        - name: api@internal
-          kind: TraefikService
+        - kind: TraefikService
+          name: api@internal
   tls:
     secretName: traefik-dashboard-tls
