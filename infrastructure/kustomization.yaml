@@ -5,3 +5,4 @@ resources:
   - ./networking/traefik
   - ./networking/cert-manager
   - ./storage/longhorn
+  - ./storage/postgresql
