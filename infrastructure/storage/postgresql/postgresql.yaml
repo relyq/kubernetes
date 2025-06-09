@@ -10,7 +10,7 @@ metadata:
   namespace: postgresql
 spec:
   interval: 24h
-  url: oci://registry-1.docker.io/bitnamicharts
+  url: oci://registry-1.docker.io/bitnamicharts/postgresql
   ref:
     semver: ">=15.0.0 <16.7.10"
 ---
