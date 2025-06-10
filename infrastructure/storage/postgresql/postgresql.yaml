@@ -25,7 +25,7 @@ spec:
     spec:
       chart: postgresql
       sourceRef:
-        kind: HelmRepository
+        kind: OCIRepository
         name: postgresql
         namespace: postgresql
       interval: 12h
