@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: values
+  namespace: keycloak
+data:
+  values.yaml: |
+    global:
+      defaultStorageClass: "longhorn-custom"
+
+    auth:
+      adminUser: admin
+      existingSecret: keycloak-auth
+      passwordSecretKey: keycloak-admin-password
+
+    postgresql:
+      enabled: true
+      auth:
+        username: keycloak
+        database: keycloak
+        existingSecret: keycloak-auth
+        secretKeys:
+          postgres-password: keycloak-postgresql-admin-password
+          userPasswordKey: keycloak-postgresql-user-password
