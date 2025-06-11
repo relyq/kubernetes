@@ -23,3 +23,5 @@ data:
       existingSecretUserKey: keycloak-postgresql-user
       existingSecretDatabaseKey: keycloak-postgresql-database
       existingSecretPasswordKey: keycloak-postgresql-password
+
+    proxy: edge
