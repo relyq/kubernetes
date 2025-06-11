@@ -17,16 +17,16 @@ spec:
 
             echo "Generating user creation SQL..."
             cat <<EOF > /tmp/init.sql
-DO \$\$
-BEGIN
-  IF NOT EXISTS (
-    SELECT FROM pg_catalog.pg_roles WHERE rolname = '{{ .KeycloakUser }}'
-  ) THEN
-    EXECUTE format('CREATE ROLE %I LOGIN PASSWORD %L', '{{ .KeycloakUser }}', '{{ .KeycloakPassword }}');
-  END IF;
-END
-\$\$;
-EOF
+            DO \$\$
+            BEGIN
+              IF NOT EXISTS (
+                SELECT FROM pg_catalog.pg_roles WHERE rolname = '{{ .KeycloakUser }}'
+              ) THEN
+                EXECUTE format('CREATE ROLE %I LOGIN PASSWORD %L', '{{ .KeycloakUser }}', '{{ .KeycloakPassword }}');
+              END IF;
+            END
+            \$\$;
+            EOF
 
             echo "Substituting variables..."
             sed -i "s/{{ .KeycloakUser }}/$(KEYCLOAK_USER)/g" /tmp/init.sql
