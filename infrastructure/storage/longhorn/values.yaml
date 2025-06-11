@@ -7,4 +7,3 @@ data:
   values.yaml: |
     defaultSettings:
         defaultReplicaCount: 1
-        defaultDataPath: /mnt/data/claire/longhorn
