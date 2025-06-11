@@ -26,15 +26,12 @@ spec:
             psql -h postgresql -U "$POSTGRES_USER" -f /tmp/init.sql
         env:
         - name: POSTGRES_USER
-          valueFrom:
-            secretKeyRef:
-              name: postgresql-auth
-              key: postgresql-admin-password
+          value: "postgres"
         - name: PGPASSWORD
           valueFrom:
             secretKeyRef:
               name: postgresql-auth
-              key: postgresql-user-password
+              key: postgresql-admin-password
         - name: KEYCLOAK_USER
           valueFrom:
             secretKeyRef:
