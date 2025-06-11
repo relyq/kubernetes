@@ -10,15 +10,16 @@ data:
 
     auth:
       adminUser: admin
-      existingSecret: keycloak-auth
+      existingSecret: keycloak
       passwordSecretKey: keycloak-admin-password
 
     postgresql:
-      enabled: true
-      auth:
-        username: keycloak
-        database: keycloak
-        existingSecret: keycloak-auth
-        secretKeys:
-          postgres-password: keycloak-postgresql-admin-password
-          userPasswordKey: keycloak-postgresql-user-password
+      enabled: false
+
+    externalDatabase:
+      existingSecret: keycloak
+      existingSecretHostKey: keycloak-postgresql-host
+      existingSecretPortKey: keycloak-postgresql-port
+      existingSecretUserKey: keycloak-postgresql-user
+      existingSecretDatabaseKey: keycloak-postgresql-database
+      existingSecretPasswordKey: keycloak-postgresql-password
