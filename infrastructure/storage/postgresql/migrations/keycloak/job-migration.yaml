@@ -14,16 +14,35 @@ spec:
         args:
           - |
             set -e
-            # load SQL template
-            cp /sql/init.sql /tmp/init.sql
 
-            # substitute secrets into SQL
+            echo "Generating user creation SQL..."
+            cat <<EOF > /tmp/init.sql
+DO \$\$
+BEGIN
+  IF NOT EXISTS (
+    SELECT FROM pg_catalog.pg_roles WHERE rolname = '{{ .KeycloakUser }}'
+  ) THEN
+    EXECUTE format('CREATE ROLE %I LOGIN PASSWORD %L', '{{ .KeycloakUser }}', '{{ .KeycloakPassword }}');
+  END IF;
+END
+\$\$;
+EOF
+
+            echo "Substituting variables..."
             sed -i "s/{{ .KeycloakUser }}/$(KEYCLOAK_USER)/g" /tmp/init.sql
             sed -i "s/{{ .KeycloakPassword }}/$(KEYCLOAK_PASSWORD)/g" /tmp/init.sql
-            sed -i "s/{{ .KeycloakDB }}/$(KEYCLOAK_DB)/g" /tmp/init.sql
 
-            # run SQL
+            echo "Running user creation script..."
             psql -h postgresql -U "$POSTGRES_USER" -f /tmp/init.sql
+
+            echo "Checking if database '$KEYCLOAK_DB' exists..."
+            DB_EXISTS=$(psql -h postgresql -U "$POSTGRES_USER" -tAc "SELECT 1 FROM pg_database WHERE datname = '$KEYCLOAK_DB'")
+            if [ "$DB_EXISTS" != "1" ]; then
+              echo "Creating database '$KEYCLOAK_DB'..."
+              psql -h postgresql -U "$POSTGRES_USER" -c "CREATE DATABASE \"$KEYCLOAK_DB\" OWNER \"$KEYCLOAK_USER\""
+            else
+              echo "Database '$KEYCLOAK_DB' already exists."
+            fi
         env:
         - name: POSTGRES_USER
           value: "postgres"
@@ -47,10 +66,3 @@ spec:
             secretKeyRef:
               name: postgresql-keycloak
               key: keycloak-postgresql-database
-        volumeMounts:
-        - name: sql
-          mountPath: /sql
-      volumes:
-      - name: sql
-        configMap:
-          name: init-keycloak-sql
