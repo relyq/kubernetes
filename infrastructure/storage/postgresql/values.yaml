@@ -6,8 +6,7 @@ metadata:
 data:
   values.yaml: |
     auth:
-      username:
-      password:
+      username: relyq
       database: claire
       existingSecret: postgresql-auth
       secretKeys:
@@ -29,9 +28,3 @@ data:
       limits:
         memory: 512Mi
         cpu: 500m
-
-    service:
-      type: ClusterIP
-
-    volumePermissions:
-      enabled: true
