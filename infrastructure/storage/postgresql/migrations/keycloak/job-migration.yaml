@@ -28,12 +28,12 @@ spec:
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
-              name: postgres-auth
+              name: postgresql-auth
               key: postgresql-admin-password
         - name: PGPASSWORD
           valueFrom:
             secretKeyRef:
-              name: postgres-auth
+              name: postgresql-auth
               key: postgresql-user-password
         - name: KEYCLOAK_USER
           valueFrom:
