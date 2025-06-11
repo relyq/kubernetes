@@ -30,8 +30,5 @@ data:
         memory: 512Mi
         cpu: 500m
 
-    service:
-      type: ClusterIP
-
     volumePermissions:
       enabled: true
