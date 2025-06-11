@@ -11,3 +11,4 @@ homelab k3s cluster
 ## order of resource creation
 
 - keycloak only after postgres & keycloak migration
+- clusterissuers after cert-manager
