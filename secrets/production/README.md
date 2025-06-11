@@ -1,0 +1,3 @@
+# secrets
+
+i'm being lazy and just copying my [service secrets](https://github.com/relyq/kubernetes/tree/master/secrets/production/keycloak.yaml) to [database migration secrets](https://github.com/relyq/kubernetes/tree/master/secrets/production/postgresql-keycloak.yaml) to share secrets across namespaces so i can create the migrations. i'll fix this whenever i move to [external secrets operator](https://external-secrets.io/)

@@ -1,0 +1,59 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-keycloak-db
+  namespace: postgresql
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: psql
+        image: bitnami/postgresql:16
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            set -e
+            # load SQL template
+            cp /sql/init.sql /tmp/init.sql
+
+            # substitute secrets into SQL
+            sed -i "s/{{ .KeycloakUser }}/$(KEYCLOAK_USER)/g" /tmp/init.sql
+            sed -i "s/{{ .KeycloakPassword }}/$(KEYCLOAK_PASSWORD)/g" /tmp/init.sql
+            sed -i "s/{{ .KeycloakDB }}/$(KEYCLOAK_DB)/g" /tmp/init.sql
+
+            # run SQL
+            psql -h postgresql -U "$POSTGRES_USER" -f /tmp/init.sql
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-auth
+              key: postgresql-admin-password
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-auth
+              key: postgresql-user-password
+        - name: KEYCLOAK_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgresql-keycloak
+              key: keycloak-postgresql-user
+        - name: KEYCLOAK_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgresql-keycloak
+              key: keycloak-postgresql-password
+        - name: KEYCLOAK_DB
+          valueFrom:
+            secretKeyRef:
+              name: postgresql-keycloak
+              key: keycloak-postgresql-database
+        volumeMounts:
+        - name: sql
+          mountPath: /sql
+      volumes:
+      - name: sql
+        configMap:
+          name: init-keycloak-sql
