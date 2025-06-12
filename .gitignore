@@ -1,1 +1,3 @@
 *.decrypted*
+age.key
+k3s-flux-gh-token
