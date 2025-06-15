@@ -9,6 +9,7 @@ spec:
   timeout: 5m
   dependsOn:
     - name: namespaces
+    - name: cert-manager-clusterissuers
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -26,7 +27,6 @@ spec:
   retryInterval: 1m
   timeout: 2m
   dependsOn:
-    - name: infrastructure
     - name: namespaces
   sourceRef:
     kind: GitRepository
