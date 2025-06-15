@@ -15,3 +15,7 @@ data:
       storageClass: longhorn-custom
       size: 4Gi
       existingClaims: ["couchdb-data"]
+
+    couchdbConfig:
+      couchdb:
+        uuid: 772ec1d5-d268-4bb6-8366-f6693b07ac6b
