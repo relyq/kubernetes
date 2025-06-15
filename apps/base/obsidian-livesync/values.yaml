@@ -16,11 +16,6 @@ data:
       size: 4Gi
       accessModes:
         - ReadWriteOnce
-      existingClaims:
-        - volumeName: obsidian-livesync-couchdb-pvc
-          claimName: obsidian-livesync-couchdb-pvc
-          persistentVolumeName: obsidian-livesync-couchdb-pvc
-          volumeSource: obsidian-livesync-couchdb-pvc
 
     couchdbConfig:
       couchdb:
