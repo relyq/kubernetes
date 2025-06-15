@@ -12,9 +12,9 @@ spec:
           type: PathPrefix
           value: /
       backendRefs:
-        - name: couchdb-service
+        - name: couchdb-svc
           kind: Service
-          port: 80
+          port: 5984
       filters:
         - type: RequestHeaderModifier
           requestHeaderModifier:

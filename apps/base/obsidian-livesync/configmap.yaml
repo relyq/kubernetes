@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: couchdb-config
-  namespace: obsidian-livesync
-data:
-  local.ini: |

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: values
+  namespace: obsidian-livesync
+data:
+  values.yaml: |
+    clusterSize: 1
+
+    createAdminSecret: false
+    extraSecretName: obsidian-livesync
+
+    persistentVolume:
+      enabled: true
+      storageClass: longhorn-custom
+      size: 4Gi
+      existingClaims: ["couchdb-data"]
