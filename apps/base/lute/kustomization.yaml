@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lute
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: lute
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - httproute.yaml
