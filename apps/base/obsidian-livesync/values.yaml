@@ -12,9 +12,8 @@ data:
 
     persistentVolume:
       enabled: true
-      storageClass: longhorn-custom
-      size: 4Gi
-      existingClaims: ["couchdb-data"]
+      existingClaims:
+        - couchdb-data
 
     couchdbConfig:
       couchdb:
