@@ -6,6 +6,8 @@ metadata:
 spec:
   interval: 10m
   dependsOn:
+    - name: namespaces
+    - name: secrets
     - name: infrastructure
     - name: cert-manager-clusterissuers
   sourceRef:

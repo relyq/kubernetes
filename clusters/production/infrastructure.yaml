@@ -7,6 +7,8 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
+  dependsOn:
+    - name: namespaces
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -25,6 +27,7 @@ spec:
   timeout: 2m
   dependsOn:
     - name: infrastructure
+    - name: namespaces
   sourceRef:
     kind: GitRepository
     name: flux-system
