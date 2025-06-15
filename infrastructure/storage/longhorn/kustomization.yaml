@@ -5,3 +5,5 @@ resources:
   - httproute.yaml
   - values.yaml
   - storageclass.yaml
+patchesStrategicMerge:
+  - storageclasses-non-default.yaml
