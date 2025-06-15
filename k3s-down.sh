@@ -1,4 +1,6 @@
 #!/bin/bash
+cd "$(dirname "$0")"
+
 systemctl stop k3s
 
 # save current iptables rules before flushing
