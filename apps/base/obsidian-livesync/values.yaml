@@ -13,7 +13,7 @@ data:
     persistentVolume:
       enabled: true
       existingClaims:
-        - couchdb-data
+        - name: couchdb-data
 
     couchdbConfig:
       couchdb:
