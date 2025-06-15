@@ -27,9 +27,9 @@ spec:
           envFrom:
             - secretRef:
                 name: couchdb-env
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
+          #securityContext:
+          #  runAsUser: 1000
+          #  runAsGroup: 1000
       volumes:
         - name: data
           persistentVolumeClaim:
