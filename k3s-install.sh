@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik" sh -
 mkdir /home/relyq/.kube
@@ -14,14 +15,9 @@ flux install
 
 kubectl create secret generic sops-age \
 	--namespace=flux-system \
-	--from-file=age.agekey=/home/relyq/age.key
+	--from-file=age.agekey=./age.key
 
 TOKEN_FILE="./k3s-flux-gh-token"
 export GITHUB_TOKEN=$(cat "$TOKEN_FILE")
 
-flux bootstrap github \
-	--owner=relyq \
-	--repository=kubernetes \
-	--branch=master \
-	--path=clusters/production \
-	--personal
+kubectl apply -f ./clusters/production/flux-system
