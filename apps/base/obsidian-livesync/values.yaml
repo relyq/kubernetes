@@ -8,7 +8,7 @@ data:
     clusterSize: 1
 
     createAdminSecret: false
-    extraSecretName: obsidian-livesync
+    extraSecretName: couchdb-env
 
     persistentVolume:
       enabled: true
