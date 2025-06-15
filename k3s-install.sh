@@ -17,7 +17,13 @@ kubectl create secret generic sops-age \
 	--namespace=flux-system \
 	--from-file=age.agekey=./age.key
 
+kubectl create secret generic flux-system \
+  --namespace=flux-system \
+  --from-file=identity=/home/relyq/.ssh/id_ed25519 \
+  --from-file=identity.pub=/home/relyq/.ssh/id_ed25519.pub \
+  --from-literal=known_hosts="$(ssh-keyscan github.com)"
+
 TOKEN_FILE="./k3s-flux-gh-token"
 export GITHUB_TOKEN=$(cat "$TOKEN_FILE")
 
-kubectl apply -f ./clusters/production/flux-system
+kubectl apply -k ./clusters/production/flux-system
