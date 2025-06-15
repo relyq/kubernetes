@@ -12,8 +12,15 @@ data:
 
     persistentVolume:
       enabled: true
+      storageClass: longhorn-custom
+      size: 4Gi
+      accessModes:
+        - ReadWriteOnce
       existingClaims:
-        - name: couchdb-data
+        - volumeName: obsidian-livesync-couchdb-pvc
+          claimName: obsidian-livesync-couchdb-pvc
+          persistentVolumeName: obsidian-livesync-couchdb-pvc
+          volumeSource: obsidian-livesync-couchdb-pvc
 
     couchdbConfig:
       couchdb:
