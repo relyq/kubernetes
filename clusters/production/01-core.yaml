@@ -1,27 +1,6 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: postgres
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 2m
-  dependsOn:
-    - name: namespaces
-    - name: secrets
-    - name: longhorn
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: ./infrastructure/storage/postgresql
-  prune: true
-  wait: true
----
-
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
   name: longhorn
   namespace: flux-system
 spec:
@@ -30,7 +9,6 @@ spec:
   timeout: 2m
   dependsOn:
     - name: namespaces
-    - name: traefik # shouldn't really depend on traefik but i'm using a route for now
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -50,9 +28,29 @@ spec:
   timeout: 2m
   dependsOn:
     - name: namespaces
+    - name: cert-manager
   sourceRef:
     kind: GitRepository
     name: flux-system
   path: ./infrastructure/networking/traefik
+  prune: true
+  wait: true
+---
+
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cert-manager
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 2m
+  dependsOn:
+    - name: namespaces
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/networking/cert-manager
   prune: true
   wait: true

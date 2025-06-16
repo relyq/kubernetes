@@ -11,7 +11,6 @@ spec:
     - name: namespaces
     - name: secrets
     - name: platform
-    - name: cert-manager-clusterissuers
   sourceRef:
     kind: GitRepository
     name: flux-system

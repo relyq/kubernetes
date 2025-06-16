@@ -8,6 +8,7 @@ homelab k3s cluster
 - currently the migrations & keycloak fail because the db is not ready yet
 - i have to do some manual flux suspend, kubectl delete, & flux resume for now, i think because of resource order & wait times
 - i might move the [structure readme](https://github.com/relyq/kubernetes/tree/master/clusters/production) to the root dir
+- i have to demote traefik to platform - see [structure notes]((https://github.com/relyq/kubernetes/tree/master/clusters/production))
 
 - not sure how i'll manage separated envs. what if i want -dev subdomains for dev env? currently my gateway api with the domain is in "infrastructure", with no overlay
 
