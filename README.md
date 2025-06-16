@@ -5,8 +5,6 @@ homelab k3s cluster
 - using SOPS + age
 - i'm using a [custom longhorn storage class](https://github.com/relyq/kubernetes/tree/master/infrastructure/storage/longhorn/storageclass.yaml) with number of replicas set to one (single node k3s)
 - see [secrets](https://github.com/relyq/kubernetes/tree/master/secrets/production). fix copied over secrets
-- currently the migrations & keycloak fail because the db is not ready yet
-- i have to do some manual flux suspend, kubectl delete, & flux resume for now, i think because of resource order & wait times
 - i might move the [structure readme](https://github.com/relyq/kubernetes/tree/master/clusters/production) to the root dir
 - i have to demote traefik to platform - see [structure notes]((https://github.com/relyq/kubernetes/tree/master/clusters/production))
 
