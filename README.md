@@ -10,3 +10,8 @@ homelab k3s cluster
 - i might move the [structure readme](https://github.com/relyq/kubernetes/tree/master/clusters/production) to the root dir
 
 - not sure how i'll manage separated envs. what if i want -dev subdomains for dev env? currently my gateway api with the domain is in "infrastructure", with no overlay
+
+## naming conventions
+
+- deployments & services - if there's only one they take the service name
+- supporting resources are named by purpose
