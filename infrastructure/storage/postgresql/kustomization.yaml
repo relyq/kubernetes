@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - values.yaml
   - postgresql.yaml
-  - ./migrations/keycloak/job-migration.yaml
