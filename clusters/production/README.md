@@ -6,6 +6,8 @@ lower tier resources are core services with higher impact on the critical path. 
 
 ## infrastructure
 
+i could rename 00- to static or configs
+
 - core
 - platform
 - high impact
