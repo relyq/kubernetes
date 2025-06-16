@@ -23,6 +23,8 @@ kubectl create secret generic flux-system \
   --from-file=identity.pub=/home/relyq/.ssh/id_ed25519.pub \
   --from-literal=known_hosts="$(ssh-keyscan github.com)"
 
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/standard-install.yaml
+
 TOKEN_FILE="./k3s-flux-gh-token"
 export GITHUB_TOKEN=$(cat "$TOKEN_FILE")
 
