@@ -14,7 +14,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/storage/postgres
+  path: ./infrastructure/storage/postgresql
   prune: true
   wait: true
 ---
