@@ -18,6 +18,7 @@ spec:
   prune: true
   wait: true
 ---
+
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -29,9 +30,29 @@ spec:
   timeout: 2m
   dependsOn:
     - name: namespaces
+    - name: traefik # shouldn't really depend on traefik but i'm using a route for now
   sourceRef:
     kind: GitRepository
     name: flux-system
   path: ./infrastructure/storage/longhorn
+  prune: true
+  wait: true
+---
+
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: traefik
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 2m
+  dependsOn:
+    - name: namespaces
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/networking/traefik
   prune: true
   wait: true

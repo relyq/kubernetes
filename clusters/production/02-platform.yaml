@@ -10,7 +10,6 @@ spec:
   dependsOn:
     - name: namespaces
     - name: secrets
-    - name: clusterissuers
     - name: postgres
   sourceRef:
     kind: GitRepository

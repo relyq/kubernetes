@@ -20,15 +20,13 @@ lower tier resources are core services with higher impact on the critical path. 
 
 internal services to manage operations
 
-- keycloak, traefik, grafana, etc
-
-i'm not considering networking services to be core for the time being
+- keycloak, grafana, etc
 
 ### core
 
 foundational services that are critical for platform stability
 
-- longhorn, postgres, etc
+- longhorn, postgres, traefik etc
 
 ### todo - dependency graph
 
