@@ -33,13 +33,13 @@ spec:
             sed -i "s/{{ .KeycloakPassword }}/$(KEYCLOAK_PASSWORD)/g" /tmp/init.sql
 
             echo "Running user creation script..."
-            psql -h postgresql -U "$POSTGRES_USER" -f /tmp/init.sql
+            psql -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -f /tmp/init.sql
 
             echo "Checking if database '$KEYCLOAK_DB' exists..."
-            DB_EXISTS=$(psql -h postgresql -U "$POSTGRES_USER" -tAc "SELECT 1 FROM pg_database WHERE datname = '$KEYCLOAK_DB'")
+            DB_EXISTS=$(psql -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -tAc "SELECT 1 FROM pg_database WHERE datname = '$KEYCLOAK_DB'")
             if [ "$DB_EXISTS" != "1" ]; then
               echo "Creating database '$KEYCLOAK_DB'..."
-              psql -h postgresql -U "$POSTGRES_USER" -c "CREATE DATABASE \"$KEYCLOAK_DB\" OWNER \"$KEYCLOAK_USER\""
+              psql -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -c "CREATE DATABASE \"$KEYCLOAK_DB\" OWNER \"$KEYCLOAK_USER\""
             else
               echo "Database '$KEYCLOAK_DB' already exists."
             fi
@@ -51,6 +51,11 @@ spec:
             secretKeyRef:
               name: keycloak-initdb
               key: postgresql-admin-password
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: keycloak
+              key: keycloak-postgresql-host
         - name: KEYCLOAK_USER
           valueFrom:
             secretKeyRef:
