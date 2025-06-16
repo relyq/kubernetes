@@ -11,7 +11,7 @@ spec:
     - name: namespaces
     - name: secrets
     - name: postgres
-    - name: keycloak-migration
+    - name: keycloak-init
   sourceRef:
     kind: GitRepository
     name: flux-system
