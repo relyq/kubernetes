@@ -9,6 +9,7 @@ spec:
   timeout: 2m
   dependsOn:
     - name: namespaces
+    - name: traefik
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -29,6 +30,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: cert-manager
+    - name: crds-gateway-api
   sourceRef:
     kind: GitRepository
     name: flux-system
