@@ -4,7 +4,9 @@ metadata:
   name: apps
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 1h
+  retryInterval: 1m
+  timeout: 2m
   dependsOn:
     - name: namespaces
     - name: secrets
@@ -16,4 +18,3 @@ spec:
   path: ./apps/production
   prune: true
   wait: true
-  timeout: 5m
