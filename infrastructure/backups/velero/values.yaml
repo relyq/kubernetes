@@ -13,6 +13,9 @@ data:
            - mountPath: /target
              name: plugins
 
+    credentials:
+      existingSecret: velero
+
     backupsEnabled: true
     snapshotsEnabled: false
 
@@ -26,7 +29,7 @@ data:
         accessMode: ReadWrite
         credential:
           name: velero
-          key: aws-efdi
+          key: cloud
         config:
           region: eu-central-1
           s3Url: https://s3.eu-central-1.amazonaws.com
