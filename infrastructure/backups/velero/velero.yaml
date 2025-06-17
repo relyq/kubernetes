@@ -1,0 +1,30 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  interval: 24h
+  url: https://vmware-tanzu.github.io/helm-charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  chart:
+    spec:
+      chart: velero
+      version: 10.0.x # auto-update to semver bugfixes only
+      sourceRef:
+        kind: HelmRepository
+        name: velero
+        namespace: velero
+  interval: 15m
+  timeout: 5m
+  releaseName: velero
+  valuesFrom:
+    - kind: ConfigMap
+      name: values
+      valuesKey: values.yaml

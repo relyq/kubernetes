@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: values
+  namespace: velero
+data:
+  values.yaml: |
+    initContainers:
+       - name: velero-plugin-for-aws
+         image: velero/velero-plugin-for-aws:v1.12.1
+         imagePullPolicy: IfNotPresent
+         volumeMounts:
+           - mountPath: /target
+             name: plugins
+
+    configuration:
+      backupStorageLocation:
+        name: aws-efdi
+        provider: aws
+        bucket: efdi-infra
+        prefix: relyq-velero
+        default: true
+        accessMode: ReadWrite
+        credential:
+          name: velero
+          key: cloud
+        config:
+          region: eu-central-1
+          s3Url: https://s3.eu-central-1.amazonaws.com
+
+    schedules:
+      daily-backups:
+        disabled: false
+        schedule: "0 0 * * 0"
+        useOwnerReferenceInBackup: false
+        template:
+          ttl: 730h
+          storageLocation: aws-efdi
