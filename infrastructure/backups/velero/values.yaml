@@ -15,18 +15,18 @@ data:
 
     configuration:
       backupStorageLocation:
-        - name: aws-efdi
-          provider: aws
-          bucket: efdi-infra
-          prefix: relyq-velero
-          default: true
-          accessMode: ReadWrite
-          credential:
-            name: velero
-            key: cloud
-          config:
-            region: eu-central-1
-            s3Url: https://s3.eu-central-1.amazonaws.com
+      - name: aws-efdi
+        provider: aws
+        bucket: efdi-infra
+        prefix: relyq-velero
+        default: true
+        accessMode: ReadWrite
+        credential:
+          name: velero
+          key: cloud
+        config:
+          region: eu-central-1
+          s3Url: https://s3.eu-central-1.amazonaws.com
 
     schedules:
       daily-backups:
