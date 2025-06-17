@@ -35,7 +35,7 @@ data:
           s3Url: https://s3.eu-central-1.amazonaws.com
 
     schedules:
-      daily-backups:
+      weekly-backups:
         disabled: false
         schedule: "0 0 * * 0"
         useOwnerReferenceInBackup: false
