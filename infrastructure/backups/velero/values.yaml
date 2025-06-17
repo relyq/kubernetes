@@ -13,6 +13,9 @@ data:
            - mountPath: /target
              name: plugins
 
+    backupsEnabled: true
+    snapshotsEnabled: false
+
     configuration:
       backupStorageLocation:
       - name: aws-efdi
@@ -27,11 +30,6 @@ data:
         config:
           region: eu-central-1
           s3Url: https://s3.eu-central-1.amazonaws.com
-      volumeSnapshotLocation:
-      - name: longhorn
-        provider: csi
-        defaultVolumeSnapshotLocations: csi:longhorn
-        features: EnableCSI
 
     schedules:
       daily-backups:
