@@ -5,3 +5,4 @@ resources:
   - httproute.yaml
   - values.yaml
   - storageclass.yaml
+  - volumesnapshotclass.yaml
