@@ -33,6 +33,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: secrets
+    - name: snapshots
   sourceRef:
     kind: GitRepository
     name: flux-system
