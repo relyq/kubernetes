@@ -6,17 +6,17 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-web
+  name: nginx
   namespace: nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-web
+      app: nginx
   template:
     metadata:
       labels:
-        app: nginx-web
+        app: nginx
     spec:
       containers:
       - name: nginx
