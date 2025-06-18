@@ -24,7 +24,53 @@ spec:
   interval: 15m
   timeout: 5m
   releaseName: velero
-  valuesFrom:
-    - kind: ConfigMap
-      name: values
-      valuesKey: values.yaml
+  values:
+    initContainers:
+       - name: velero-plugin-for-aws
+         image: velero/velero-plugin-for-aws:v1.12.1
+         imagePullPolicy: IfNotPresent
+         volumeMounts:
+           - mountPath: /target
+             name: plugins
+
+    credentials:
+      existingSecret: velero
+
+    backupsEnabled: true
+    snapshotsEnabled: true
+
+    features: EnableCSI
+    defaultVolumeSnapshotLocation: csi:longhorn
+
+    configuration:
+      backupStorageLocation:
+      - name: aws-efdi
+        provider: aws
+        bucket: efdi-infra
+        prefix: relyq-velero
+        default: true
+        accessMode: ReadWrite
+        credential:
+          name: velero
+          key: cloud
+        config:
+          region: eu-central-1
+          s3Url: https://s3.eu-central-1.amazonaws.com
+
+      volumeSnapshotLocation:
+      - name: longhorn
+        provider: csi
+        config:
+          region: default
+
+    schedules:
+      weekly-backups:
+        disabled: false
+        schedule: "0 0 * * 0"
+        useOwnerReferenceInBackup: false
+        template:
+          ttl: 730h
+          snapshotVolumes: true
+          storageLocation: aws-efdi
+          volumeSnapshotLocations:
+            - aws-efdi
