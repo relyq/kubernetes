@@ -17,7 +17,10 @@ data:
       existingSecret: velero
 
     backupsEnabled: true
-    snapshotsEnabled: false
+    snapshotsEnabled: true
+
+    features: EnableCSI
+    defaultVolumeSnapshotLocation: csi:longhorn
 
     configuration:
       backupStorageLocation:
@@ -34,6 +37,12 @@ data:
           region: eu-central-1
           s3Url: https://s3.eu-central-1.amazonaws.com
 
+      volumeSnapshotLocation:
+      - name: longhorn
+        provider: csi
+        config:
+          region: default
+
     schedules:
       weekly-backups:
         disabled: false
@@ -41,4 +50,7 @@ data:
         useOwnerReferenceInBackup: false
         template:
           ttl: 730h
+          snapshotVolumes: true
           storageLocation: aws-efdi
+          volumeSnapshotLocations:
+            - aws-efdi
