@@ -39,10 +39,10 @@ spec:
     backupsEnabled: true
     snapshotsEnabled: true
 
-    features: EnableCSI
-    defaultVolumeSnapshotLocation: csi:longhorn
-
     configuration:
+      features: EnableCSI
+      defaultVolumeSnapshotLocation: csi:longhorn
+
       backupStorageLocation:
       - name: aws-efdi
         provider: aws
@@ -73,4 +73,4 @@ spec:
           snapshotVolumes: true
           storageLocation: aws-efdi
           volumeSnapshotLocations:
-            - aws-efdi
+            - longhorn
