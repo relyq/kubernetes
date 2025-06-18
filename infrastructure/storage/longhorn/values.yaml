@@ -8,3 +8,7 @@ data:
     defaultSettings:
         defaultReplicaCount: 1
         defaultLonghornStaticStorageClass: longhorn-custom
+
+    defaultBackupStore:
+      backupTarget: s3://efdi-infra@eu-central-1/relyq/longhorn
+      backupTargetCredentialSecret: longhorn-aws-credentials
