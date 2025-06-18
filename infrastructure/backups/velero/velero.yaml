@@ -47,7 +47,7 @@ spec:
       - name: aws-efdi
         provider: aws
         bucket: efdi-infra
-        prefix: relyq-velero
+        prefix: relyq/velero
         default: true
         accessMode: ReadWrite
         credential:
