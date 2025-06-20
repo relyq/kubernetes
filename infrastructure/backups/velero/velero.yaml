@@ -64,7 +64,7 @@ spec:
           region: default
 
     schedules:
-      weekly-backups:
+      weekly-backup:
         disabled: false
         schedule: "0 0 * * 0"
         useOwnerReferenceInBackup: false
