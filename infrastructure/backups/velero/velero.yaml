@@ -68,6 +68,11 @@ spec:
         disabled: false
         schedule: "0 0 * * 0"
         useOwnerReferenceInBackup: false
+        excludedNamespaceScopedResources:
+          - certificates.cert-manager.io
+          - certificaterequests.cert-manager.io
+          - challenges.cert-manager.io
+          - orders.cert-manager.io
         template:
           ttl: 730h
           snapshotVolumes: true
