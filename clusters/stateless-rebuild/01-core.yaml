@@ -31,7 +31,6 @@ spec:
   timeout: 2m
   dependsOn:
     - name: namespaces
-    - name: traefik
     - name: snapshots
   sourceRef:
     kind: GitRepository
