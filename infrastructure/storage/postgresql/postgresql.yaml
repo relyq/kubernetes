@@ -25,12 +25,12 @@ spec:
       interval: 12h
   values:
     auth:
-    username: relyq
-    database: claire
-    existingSecret: postgresql-auth
-    secretKeys:
-      adminPasswordKey: postgresql-admin-password
-      userPasswordKey: postgresql-user-password
+      username: relyq
+      database: claire
+      existingSecret: postgresql-auth
+      secretKeys:
+        adminPasswordKey: postgresql-admin-password
+        userPasswordKey: postgresql-user-password
 
     primary:
       annotations:
