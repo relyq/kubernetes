@@ -17,13 +17,37 @@ spec:
   chart:
     spec:
       chart: postgresql
-      version: ">=15.0.0 <16.2.2"
+      version: "16.2.1"
       sourceRef:
         kind: HelmRepository
         name: postgresql
         namespace: postgresql
       interval: 12h
-  valuesFrom:
-    - kind: ConfigMap
-      name: values
-      valuesKey: values.yaml
+  values:
+    auth:
+    username: relyq
+    database: claire
+    existingSecret: postgresql-auth
+    secretKeys:
+      adminPasswordKey: postgresql-admin-password
+      userPasswordKey: postgresql-user-password
+
+    primary:
+      annotations:
+        pre.hook.backup.velero.io/container: postgres
+        pre.hook.backup.velero.io/command: '["sh", "-c", "PGPASSWORD=$POSTGRES_POSTGRES_PASSWORD psql -U postgres -c \"CHECKPOINT;\""]'
+        pre.hook.backup.velero.io/timeout: 1m
+      persistence:
+        enabled: true
+        size: 8Gi
+        storageClass: "longhorn-custom"
+        accessModes:
+          - ReadWriteOnce
+
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 250m
+      limits:
+        memory: 512Mi
+        cpu: 500m
