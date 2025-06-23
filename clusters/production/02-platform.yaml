@@ -50,7 +50,7 @@ metadata:
 spec:
   interval: 1h
   retryInterval: 1m
-  timeout: 10m
+  timeout: 5m
   dependsOn:
     - name: namespaces
     - name: secrets
