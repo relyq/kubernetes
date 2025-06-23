@@ -4,5 +4,4 @@ namespace: obsidian-livesync
 resources:
   - pvc.yaml
   - couchdb.yaml
-  - values.yaml
   - httproute.yaml

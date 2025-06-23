@@ -17,13 +17,25 @@ spec:
   chart:
     spec:
       chart: couchdb
-      version: ">=4.5.7 <4.6.1"
+      version: "4.6.x"
       sourceRef:
         kind: HelmRepository
         name: couchdb
         namespace: obsidian-livesync
       interval: 12h
-  valuesFrom:
-    - kind: ConfigMap
-      name: values
-      valuesKey: values.yaml
+  values:
+    clusterSize: 1
+
+    createAdminSecret: false
+    extraSecretName: couchdb-env
+
+    persistentVolume:
+      enabled: true
+      storageClass: longhorn-custom
+      size: 4Gi
+      accessModes:
+        - ReadWriteOnce
+
+    couchdbConfig:
+      couchdb:
+        uuid: 772ec1d5-d268-4bb6-8366-f6693b07ac6b
