@@ -1,9 +1,4 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: postgres-test
----
-apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgres-tester-script
