@@ -53,7 +53,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: cert-manager
-    - name: crds-gateway-api
+    - name: crds
   sourceRef:
     kind: GitRepository
     name: flux-system
