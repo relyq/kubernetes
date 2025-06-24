@@ -31,5 +31,5 @@ spec:
         provider = "keycloak-oidc"
         upstreams = ["static://200"]
         email_domains = ["*"]
-        oidc-issuer-url = "https://keycloak.relyq.dev/realms/claire"
-        redirect-url = "https://oauth2-proxy.relyq.dev/oauth2/callback"
+        oidc_issuer_url = "https://keycloak.relyq.dev/realms/claire"
+        redirect_url = "https://oauth2-proxy.relyq.dev/oauth2/callback"
