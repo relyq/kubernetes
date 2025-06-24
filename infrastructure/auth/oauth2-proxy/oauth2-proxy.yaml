@@ -35,3 +35,5 @@ spec:
         redirect_url = "https://auth.relyq.dev/oauth2/callback"
         cookie_domains = ["relyq.dev"]
         cookie_secure = true
+        reverse_proxy = true
+        set_xauthrequest = true
