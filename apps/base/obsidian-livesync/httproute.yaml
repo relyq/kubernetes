@@ -12,7 +12,7 @@ spec:
           type: PathPrefix
           value: /
       backendRefs:
-        - name: couchdb-svc
+        - name: couchdb-svc-couchdb
           kind: Service
           port: 5984
       filters:
