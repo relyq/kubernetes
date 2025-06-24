@@ -24,4 +24,4 @@ spec:
           extensionRef:
             group: traefik.io
             kind: Middleware
-            name: oauth2-proxy-oauth2-proxy@kubernetescrd
+            name: middlewares
