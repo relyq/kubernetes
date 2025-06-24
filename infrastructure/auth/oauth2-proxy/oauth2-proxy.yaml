@@ -33,3 +33,5 @@ spec:
         email_domains = ["*"]
         oidc_issuer_url = "https://keycloak.relyq.dev/realms/claire"
         redirect_url = "https://auth.relyq.dev/oauth2/callback"
+        cookie_domains = ["relyq.dev"]
+        cookie_secure = true
