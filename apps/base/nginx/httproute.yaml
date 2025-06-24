@@ -12,7 +12,7 @@ spec:
           type: PathPrefix
           value: /
       backendRefs:
-        - name: nginx-service
+        - name: nginx
           kind: Service
           port: 80
   parentRefs:
