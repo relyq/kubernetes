@@ -25,4 +25,3 @@ spec:
             group: traefik.io
             kind: Middleware
             name: oauth2-proxy
-            namespace: oauth2-proxy
