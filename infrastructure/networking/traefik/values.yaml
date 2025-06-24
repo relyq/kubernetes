@@ -11,6 +11,8 @@ data:
     providers:
       kubernetesGateway:
         enabled: true
+      kubernetesCRD:
+        allowCrossNamespace: true
 
     ports:
       web:
