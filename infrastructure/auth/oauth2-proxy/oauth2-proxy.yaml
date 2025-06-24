@@ -32,4 +32,4 @@ spec:
         upstreams = ["static://200"]
         email_domains = ["*"]
         oidc_issuer_url = "https://keycloak.relyq.dev/realms/claire"
-        redirect_url = "https://oauth2-proxy.relyq.dev/oauth2/callback"
+        redirect_url = "https://auth.relyq.dev/oauth2/callback"
