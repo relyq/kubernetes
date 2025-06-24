@@ -1,10 +1,14 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: middlewares
+  name: oauth2-proxy
   namespace: longhorn
 spec:
-  chain:
-    middlewares:
-      - name: oauth2-proxy
-        namespace: oauth2-proxy
+  forwardAuth:
+    address: https://auth.relyq.dev/oauth2/start
+    trustForwardHeader: true
+    authResponseHeaders:
+      - X-Auth-User
+      - X-Auth-Email
+      - X-Auth-Request-User
+      - Set-Cookie
