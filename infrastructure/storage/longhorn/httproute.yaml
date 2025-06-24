@@ -4,6 +4,10 @@ metadata:
   name: route
   namespace: longhorn
 spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: traefik
+      sectionName: websecure
   hostnames:
     - longhorn.relyq.dev
   rules:
@@ -15,7 +19,10 @@ spec:
         - name: longhorn-frontend
           kind: Service
           port: 80
-  parentRefs:
-    - name: traefik-gateway
-      namespace: traefik
-      sectionName: websecure
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: oauth2-proxy
+            namespace: oauth2-proxy
