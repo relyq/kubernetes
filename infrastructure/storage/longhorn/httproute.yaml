@@ -24,4 +24,4 @@ spec:
           extensionRef:
             group: traefik.io
             kind: Middleware
-            name: middlewares
+            name: oauth2-proxy
