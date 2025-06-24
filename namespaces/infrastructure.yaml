@@ -26,6 +26,11 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: oauth2-proxy
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: pi-hole
 ---
 apiVersion: v1
