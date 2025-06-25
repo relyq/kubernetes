@@ -61,6 +61,5 @@ spec:
         ClientSecret: urn:k8s:secret:oidc:keycloak-client-secret
         UsePkce: false
         ValidAudience: account
-      CallbackUri: https://auth.relyq.dev/oidc/callback
       SessionCookie:
         Domain: .relyq.dev

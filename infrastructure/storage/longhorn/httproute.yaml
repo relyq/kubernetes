@@ -35,7 +35,6 @@ spec:
   plugin:
     traefik-oidc-auth:
       Secret: urn:k8s:secret:oidc:secret
-      #CallbackUri: https://auth.relyq.dev/oidc/callback
       Provider:
         Url: https://keycloak.relyq.dev/realms/claire
         ClientId: urn:k8s:secret:oidc:keycloak-client-id
