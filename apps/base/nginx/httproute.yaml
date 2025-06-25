@@ -4,6 +4,10 @@ metadata:
   name: route
   namespace: nginx
 spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: traefik
+      sectionName: websecure
   hostnames:
     - x.relyq.dev
   rules:
@@ -15,7 +19,3 @@ spec:
         - name: nginx
           kind: Service
           port: 80
-  parentRefs:
-    - name: traefik-gateway
-      namespace: traefik
-      sectionName: websecure

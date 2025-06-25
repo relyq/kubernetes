@@ -16,8 +16,6 @@ spec:
       containers:
         - name: lute
           image: jzohrab/lute3:3.10.1
-          ports:
-            - containerPort: 80
           volumeMounts:
             - name: data
               mountPath: /lute_data
