@@ -23,7 +23,30 @@ spec:
         name: traefik
         namespace: traefik
       interval: 12h
-  valuesFrom:
-    - kind: ConfigMap
-      name: values
-      valuesKey: values.yaml
+  values:
+    deployment:
+      enabled: true
+
+    experimental:
+      plugins:
+        traefik-oidc-auth:
+          moduleName: "github.com/sevensolutions/traefik-oidc-auth"
+          version: "v0.12.0"
+
+    providers:
+      kubernetesGateway:
+        enabled: true
+      kubernetesCRD:
+        allowCrossNamespace: true
+
+    ports:
+      web:
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+            permanent: true
+
+    additionalArguments:
+      - "--entryPoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entryPoints.web.http.redirections.entryPoint.scheme=https"
