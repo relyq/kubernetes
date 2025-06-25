@@ -42,4 +42,9 @@ spec:
         UsePkce: false
         ValidAudience: account
       SessionCookie:
-        Domain: .relyq.dev
+        Domain: relyq.dev
+      Authorization:
+        AssertClaims:
+          - Name: realm_access.roles
+            AllOf:
+              - longhorn-admin

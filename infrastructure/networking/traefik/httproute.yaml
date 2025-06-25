@@ -18,6 +18,12 @@ spec:
       backendRefs:
         - name: api@internal
           kind: TraefikService
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: oidc
 --- # traefik-oidc-auth
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -62,4 +68,9 @@ spec:
         UsePkce: false
         ValidAudience: account
       SessionCookie:
-        Domain: .relyq.dev
+        Domain: relyq.dev
+      Authorization:
+        AssertClaims:
+          - Name: realm_access.roles
+            AllOf:
+              - traefik-admin
