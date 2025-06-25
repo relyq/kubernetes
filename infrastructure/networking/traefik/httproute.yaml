@@ -38,4 +38,4 @@ spec:
           value: /
       backendRefs:
         - name: noop@internal
-          kind: Service
+          kind: TraefikService
