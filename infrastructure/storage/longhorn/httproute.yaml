@@ -33,7 +33,7 @@ metadata:
   namespace: longhorn
 spec:
   plugin:
-    traefik-oidc-plugin:
+    traefik-oidc-auth:
       Secret: urn:k8s:secret:oidc:secret
       Provider:
         Url: https://keycloak.relyq.dev/realms/claire
