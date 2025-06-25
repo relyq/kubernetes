@@ -39,3 +39,28 @@ spec:
       backendRefs:
         - name: noop@internal
           kind: TraefikService
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: oidc
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: oidc
+  namespace: traefik
+spec:
+  plugin:
+    traefik-oidc-auth:
+      Secret: urn:k8s:secret:oidc:secret
+      Provider:
+        Url: https://keycloak.relyq.dev/realms/claire
+        ClientId: urn:k8s:secret:oidc:keycloak-client-id
+        ClientSecret: urn:k8s:secret:oidc:keycloak-client-secret
+        UsePkce: false
+        ValidAudience: account
+      CallbackUri: https://auth.relyq.dev/oidc/callback
+      #SessionCookie:
+      #  Domain: .relyq.dev
