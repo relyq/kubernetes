@@ -39,11 +39,11 @@ spec:
     couchdbConfig:
       couchdb:
         uuid: 772ec1d5-d268-4bb6-8366-f6693b07ac6b
+        max_document_size: 50000000
       chttpd:
         enable_cors: true
         require_valid_user: true
         max_http_request_size: 4294967296
-        max_document_size: 50000000
       chttpd_auth:
         require_valid_user: true
       httpd:
