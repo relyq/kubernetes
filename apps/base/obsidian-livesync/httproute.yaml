@@ -16,22 +16,40 @@ spec:
           kind: Service
           port: 5984
       filters:
-        - type: RequestHeaderModifier
-          requestHeaderModifier:
-            add:
-              - name: Access-Control-Allow-Methods
-                value: GET,PUT,POST,HEAD,DELETE
-              - name: Access-Control-Allow-Headers
-                value: accept,authorization,content-type,origin,referer
-              - name: Access-Control-Allow-Origin
-                value: app://obsidian.md,capacitor://localhost,http://localhost
-              - name: Access-Control-Max-Age
-                value: "3600"
-              - name: Access-Control-Allow-Credentials
-                value: "true"
-              - name: Vary
-                value: Origin
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: obsidiancors
   parentRefs:
     - name: traefik-gateway
       namespace: traefik
       sectionName: websecure
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: obsidiancors
+  namespace: obsidian-livesync
+spec:
+  headers:
+    accessControlAllowMethods:
+      - GET
+      - PUT
+      - POST
+      - HEAD
+      - DELETE
+    accessControlAllowHeaders:
+      - accept
+      - authorization
+      - content-type
+      - origin
+      - referer
+    accessControlAllowOriginList:
+      - app://obsidian.md
+      - capacitor://localhost
+      - http://localhost
+      - https://obsidian-livesync.relyq.dev
+    accessControlAllowCredentials: true
+    accessControlMaxAge: 3600
+    addVaryHeader: true
