@@ -32,17 +32,18 @@ spec:
         - ReadWriteOnce
       storageClassName: longhorn-custom
     route:
-      enabled: true
-      hostnames:
-        - grafana.relyq.dev
-      parentRefs:
-        - name: traefik-gateway
-          namespace: traefik
-          sectionName: websecure
-      matches:
-        - path:
-            type: PathPrefix
-            value: /
+      main:
+        enabled: true
+        hostnames:
+          - grafana.relyq.dev
+        parentRefs:
+          - name: traefik-gateway
+            namespace: traefik
+            sectionName: websecure
+        matches:
+          - path:
+              type: PathPrefix
+              value: /
     admin:
       existingSecret: grafana
       userKey: admin-username
