@@ -45,6 +45,24 @@ spec:
               type: PathPrefix
               value: /
     admin:
-      existingSecret: grafana
+      existingSecret: grafana-admin
       userKey: admin-username
       passwordKey: admin-password
+
+    envFromSecret: grafana-oauth
+
+    grafana.ini:
+      auth:
+        generic_oauth:
+          enabled: true
+          name: Keycloak-OAuth
+          client_id: env_var_override
+          client_secret: env_var_override
+          scopes: openid email profile offline_access roles
+          email_attribute_path: email
+          login_attribute_path: username
+          name_attribute_path: full_name
+          auth_url: https://keycloak.relyq.dev/realms/claire/protocol/openid-connect/auth
+          token_url: https://keycloak.relyq.dev/realms/claire/protocol/openid-connect/token
+          api_url: https://keycloak.relyq.dev/realms/claire/protocol/openid-connect/userinfo
+          role_attribute_path: contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'
