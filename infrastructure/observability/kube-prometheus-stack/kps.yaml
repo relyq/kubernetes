@@ -17,9 +17,54 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: ">=76.6.0 <76.7.0"
+      version: ">=75.6.0 <75.7.0"
       sourceRef:
         kind: HelmRepository
         name: kps
         namespace: kps
       interval: 12h
+  values:
+    grafana:
+        route:
+          main:
+            enabled: true
+            hostnames:
+              - grafana.relyq.dev
+            parentRefs:
+              - name: traefik-gateway
+                namespace: traefik
+                sectionName: websecure
+            matches:
+              - path:
+                  type: PathPrefix
+                  value: /
+
+        admin:
+          existingSecret: grafana-admin
+          userKey: grafana-admin-username
+          passwordKey: grafana-admin-password
+
+        envFromSecret: grafana-oauth
+
+        assertNoLeakedSecrets: true
+
+        grafana.ini:
+          server:
+            root_url: https://grafana.relyq.dev/
+          auth:
+            disable_login_form: 'true'
+          auth.basic:
+            enabled: 'false'
+          auth.generic_oauth:
+            enabled: 'true'
+            name: Keycloak
+            scopes: openid email profile offline_access roles
+            email_attribute_path: email
+            login_attribute_path: preferred_username
+            name_attribute_path: full_name
+            auth_url: https://keycloak.relyq.dev/realms/claire/protocol/openid-connect/auth
+            token_url: https://keycloak.relyq.dev/realms/claire/protocol/openid-connect/token
+            api_url: https://keycloak.relyq.dev/realms/claire/protocol/openid-connect/userinfo
+            role_attribute_path: contains(resource_access.grafana.roles[*], 'admin') && 'GrafanaAdmin' || contains(resource_access.grafana.roles[*], 'editor') && 'Editor' || 'Viewer'
+            allow_assign_grafana_admin: 'true'
+            role_attribute_strict: 'true'
