@@ -45,6 +45,6 @@ spec:
         Domain: relyq.dev
       Authorization:
         AssertClaims:
-          - Name: realm_access.roles
+          - Name: resource_access.longhorn.roles
             AllOf:
-              - longhorn-admin
+              - admin

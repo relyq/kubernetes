@@ -71,6 +71,6 @@ spec:
         Domain: relyq.dev
       Authorization:
         AssertClaims:
-          - Name: realm_access.roles
+          - Name: resource_access.traefik.roles
             AllOf:
-              - traefik-admin
+              - admin

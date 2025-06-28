@@ -45,6 +45,6 @@ spec:
         Domain: relyq.dev
       Authorization:
         AssertClaims:
-          - Name: realm_access.roles
+          - Name: resource_access.lute-relyq.roles
             AllOf:
-              - lute-relyq
+              - relyq
