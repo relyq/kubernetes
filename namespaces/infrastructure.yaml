@@ -38,3 +38,7 @@ kind: Namespace
 metadata:
   name: velero
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: grafana
