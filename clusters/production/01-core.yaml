@@ -134,7 +134,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./security/vault
+  path: ./infrastructure/security/vault
   prune: true
   wait: true
 ---
