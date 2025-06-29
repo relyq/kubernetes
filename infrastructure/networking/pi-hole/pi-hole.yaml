@@ -26,3 +26,6 @@ spec:
   values:
     persistentVolumeClaim:
       enabled: false
+    admin:
+      existingSecret: pi-hole
+      passwordKey: admin-password
