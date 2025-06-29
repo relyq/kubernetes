@@ -23,7 +23,14 @@ spec:
         name: cert-manager
         namespace: cert-manager
       interval: 12h
-  valuesFrom:
-  - kind: ConfigMap
-    name: values
-    valuesKey: values.yaml
+  values:
+    installCRDs: true
+
+    config:
+      apiVersion: controller.config.cert-manager.io/v1alpha1
+      kind: ControllerConfiguration
+      enableGatewayAPI: true
+
+    serviceAccount:
+      annotations:
+        vault.hashicorp.com/role: "cert-manager"
