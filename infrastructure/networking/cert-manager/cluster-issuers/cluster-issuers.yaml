@@ -31,4 +31,3 @@ spec:
         role: vault-issuer
         serviceAccountRef:
           name: vault-issuer
-          namespace: cert-manager
