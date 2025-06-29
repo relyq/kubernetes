@@ -61,9 +61,4 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: step-ca
----
-apiVersion: v1
-kind: Namespace
-metadata:
   name: vault
