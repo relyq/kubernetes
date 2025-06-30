@@ -3,9 +3,11 @@ kind: HTTPRoute
 metadata:
   name: route
   namespace: longhorn
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: longhorn.relyq.dev
 spec:
   parentRefs:
-    - name: traefik-gateway
+    - name: gateway-internal
       namespace: traefik
       sectionName: websecure
   hostnames:

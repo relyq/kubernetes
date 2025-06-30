@@ -3,11 +3,13 @@ kind: HTTPRoute
 metadata:
   name: dashboard-route
   namespace: traefik
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: traefik.relyq.dev
 spec:
   hostnames:
     - traefik.relyq.dev
   parentRefs:
-    - name: traefik-gateway
+    - name: gateway-internal
       namespace: traefik
       sectionName: websecure
   rules:
@@ -30,11 +32,13 @@ kind: HTTPRoute
 metadata:
   name: oidc
   namespace: traefik
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: auth.relyq.dev
 spec:
   hostnames:
     - auth.relyq.dev
   parentRefs:
-    - name: traefik-gateway
+    - name: gateway-internal
       namespace: traefik
       sectionName: websecure
   rules:

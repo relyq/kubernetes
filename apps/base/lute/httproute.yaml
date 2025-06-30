@@ -3,9 +3,11 @@ kind: HTTPRoute
 metadata:
   name: route
   namespace: lute
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: lute.relyq.dev
 spec:
   parentRefs:
-    - name: traefik-gateway
+    - name: gateway-internal
       namespace: traefik
       sectionName: websecure
   hostnames:

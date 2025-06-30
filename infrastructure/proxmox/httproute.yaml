@@ -20,7 +20,7 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: proxmox.relyq.dev
 spec:
   parentRefs:
-    - name: traefik-gateway
+    - name: gateway-internal
       namespace: traefik
       sectionName: websecure
   hostnames:

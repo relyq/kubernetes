@@ -3,11 +3,13 @@ kind: HTTPRoute
 metadata:
   name: route
   namespace: vault
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: vault.relyq.dev
 spec:
   hostnames:
     - vault.relyq.dev
   parentRefs:
-    - name: traefik-gateway
+    - name: gateway-internal
       namespace: traefik
       sectionName: websecure
   rules:
