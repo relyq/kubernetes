@@ -29,3 +29,6 @@ spec:
     admin:
       existingSecret: pi-hole
       passwordKey: admin-password
+
+    serviceDns:
+      type: LoadBalancer
