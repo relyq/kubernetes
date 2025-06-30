@@ -4,7 +4,7 @@ metadata:
   name: gateway-internal
   namespace: traefik
   annotations:
-    cert-manager.io/cluster-issuer: vault-issuer
+    cert-manager.io/cluster-issuer: letsencrypt-dns
     cert-manager.io/common-name: "*.relyq.dev"
     external-dns.alpha.kubernetes.io/target: "traefik.traefik.svc.cluster.local"
 spec:
@@ -24,7 +24,7 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: internal-wildcard-relyq-dev-tls
+          - name: wildcard-relyq-dev-tls
             kind: Secret
             namespace: traefik
       allowedRoutes:
