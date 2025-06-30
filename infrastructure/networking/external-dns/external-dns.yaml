@@ -25,5 +25,5 @@ spec:
       - gateway-httproute
     provider: pihole
     pihole:
-      server: pi-hole-pihole-dns-tcp.pi-hole.svc.cluster.local
+      server: https://pi-hole-pihole-dns-tcp.pi-hole.svc.cluster.local
       secretName: pi-hole-password
