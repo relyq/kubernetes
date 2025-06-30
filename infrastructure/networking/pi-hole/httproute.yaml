@@ -12,10 +12,10 @@ spec:
           type: PathPrefix
           value: /
       backendRefs:
-        - name: pi-hole-web
+        - name: pi-hole-pihole-web
           kind: Service
           port: 80
   parentRefs:
-    - name: traefik-gateway
+    - name: gateway-internal
       namespace: traefik
       sectionName: websecure

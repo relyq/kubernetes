@@ -1,0 +1,31 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway-internal
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: vault-issuer
+    cert-manager.io/common-name: "*.relyq.dev"
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: web
+      protocol: HTTP
+      port: 8000
+      hostname: "*.relyq.dev"
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: websecure
+      protocol: HTTPS
+      port: 8443
+      hostname: "*.relyq.dev"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: internal-wildcard-relyq-dev-tls
+            kind: Secret
+            namespace: traefik
+      allowedRoutes:
+        namespaces:
+          from: All

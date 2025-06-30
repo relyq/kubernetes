@@ -30,4 +30,6 @@ spec:
         mountPath: /v1/auth/kubernetes
         role: vault-issuer
         serviceAccountRef:
-          name: vault-issuer
+          name: cert-manager
+          audiences:
+            - vault://cert-manager/cert-manager

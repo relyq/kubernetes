@@ -1,17 +1,19 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: vault-issuer
+  name: vault-token-request
+  namespace: cert-manager
 rules:
   - apiGroups: ['']
     resources: ['serviceaccounts/token']
-    resourceNames: ['vault-issuer']
+    resourceNames: ['cert-manager']
     verbs: ['create']
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: vault-issuer
+  name: vault-toquen-request-binding
+  namespace: cert-manager
 subjects:
   - kind: ServiceAccount
     name: cert-manager
@@ -19,9 +21,4 @@ subjects:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: vault-issuer
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: vault-issuer
+  name: vault-token-request
