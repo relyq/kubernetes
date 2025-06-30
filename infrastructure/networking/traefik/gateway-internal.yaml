@@ -6,6 +6,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: vault-issuer
     cert-manager.io/common-name: "*.relyq.dev"
+    external-dns.alpha.kubernetes.io/target: "traefik.traefik.svc.cluster.local"
 spec:
   gatewayClassName: traefik
   listeners:
