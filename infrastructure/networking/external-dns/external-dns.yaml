@@ -25,5 +25,9 @@ spec:
       - gateway-httproute
     provider: pihole
     pihole:
-      server: https://pi-hole-pihole-dns-tcp.pi-hole.svc.cluster.local
+      server: http://pi-hole-pihole-web.pi-hole.svc.cluster.local
       secretName: pi-hole-password
+      tlsSkipVerify: true
+    extraEnvVars:
+      - name: EXTERNAL_DNS_PIHOLE_API_VERSION
+        value: "6"
