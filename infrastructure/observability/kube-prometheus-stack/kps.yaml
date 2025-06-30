@@ -25,32 +25,32 @@ spec:
       interval: 12h
   values:
     grafana:
-        route:
-          main:
-            enabled: true
-            annotations:
-              external-dns.alpha.kubernetes.io/hostname: grafana.relyq.dev
-            hostnames:
-              - grafana.relyq.dev
-            parentRefs:
-              - name: gateway-internal
-                namespace: traefik
-                sectionName: websecure
-            matches:
-              - path:
-                  type: PathPrefix
-                  value: /
+      route:
+        main:
+          enabled: true
+          annotations:
+            external-dns.alpha.kubernetes.io/hostname: grafana.relyq.dev
+          hostnames:
+            - grafana.relyq.dev
+          parentRefs:
+            - name: gateway-internal
+              namespace: traefik
+              sectionName: websecure
+          matches:
+            - path:
+                type: PathPrefix
+                value: /
 
-        admin:
-          existingSecret: grafana-admin
-          userKey: grafana-admin-username
-          passwordKey: grafana-admin-password
+      admin:
+        existingSecret: grafana-admin
+        userKey: grafana-admin-username
+        passwordKey: grafana-admin-password
 
-        envFromSecret: grafana-oauth
+      envFromSecret: grafana-oauth
 
-        assertNoLeakedSecrets: true
+      assertNoLeakedSecrets: true
 
-        grafana.ini:
+      grafana.ini:
           server:
             root_url: https://grafana.relyq.dev/
           auth:
