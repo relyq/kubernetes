@@ -23,6 +23,7 @@ spec:
   values:
     sources:
       - gateway-httproute
-    provider: cloudflare
-    cloudflare:
-      secretName: cloudflare-api-token-secret
+    provider: pihole
+    pihole:
+      server: pi-hole-pihole-dns-tcp.pi-hole.svc.cluster.local
+      secretName: pi-hole-password
