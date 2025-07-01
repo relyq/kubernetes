@@ -5,3 +5,4 @@ resources:
   - ./observability/kube-prometheus-stack
   - ./proxmox
   - ./networking/external-dns
+  - ./security/kyverno
