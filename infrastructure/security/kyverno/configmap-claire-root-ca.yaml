@@ -1,8 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: claire-root-ca
-  namespace: kube-system
+  name: claire-root-ca.crt
 data:
   claire-root-ca.crt: |-
     -----BEGIN CERTIFICATE-----

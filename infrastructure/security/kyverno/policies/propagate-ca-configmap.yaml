@@ -1,0 +1,21 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: propagate-ca-configmap
+spec:
+  rules:
+    - name: copy-ca-configmap
+      match:
+        resources:
+          kinds:
+            - Namespace
+      generate:
+        generateExisting: true
+        apiVersion: v1
+        kind: ConfigMap
+        name: claire-root-ca.crt
+        namespace: "{{request.object.metadata.name}}"
+        synchronize: true
+        clone:
+          namespace: default
+          name: claire-root-ca.crt

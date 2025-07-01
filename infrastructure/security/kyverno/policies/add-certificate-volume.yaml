@@ -47,4 +47,4 @@ spec:
             volumes:
             - name: etc-ssl-certs
               configMap:
-                name: claire-root-ca
+                name: claire-root-ca.crt
