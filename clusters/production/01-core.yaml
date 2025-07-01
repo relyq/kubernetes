@@ -54,10 +54,50 @@ spec:
     - name: namespaces
     - name: cert-manager
     - name: crds
+    - name: kyverno-policies
   sourceRef:
     kind: GitRepository
     name: flux-system
   path: ./infrastructure/networking/traefik
+  prune: true
+  wait: true
+---
+
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kyverno-policies
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 2m
+  dependsOn:
+    - name: namespaces
+    - name: kyverno
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/security/kyverno/policies
+  prune: true
+  wait: true
+---
+
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kyverno
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 2m
+  dependsOn:
+    - name: namespaces
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/security/kyverno
   prune: true
   wait: true
 ---

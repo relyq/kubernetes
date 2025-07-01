@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - kyverno.yaml
   - configmap-claire-root-ca.yaml
-  - policy-add-certificate-volume.yaml
