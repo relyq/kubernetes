@@ -35,5 +35,3 @@ spec:
 
     ui:
       enabled: true
-      annotations:
-        inject-certs: enabled
