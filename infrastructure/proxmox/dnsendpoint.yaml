@@ -1,0 +1,12 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: pve
+  namespace: proxmox
+spec:
+  endpoints:
+  - dnsName: pve.relyq.dev
+    recordTTL: 300
+    recordType: A
+    targets:
+    - 192.168.0.4
