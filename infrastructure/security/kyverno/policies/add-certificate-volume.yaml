@@ -44,7 +44,11 @@ spec:
               volumeMounts:
               - name: etc-ssl-certs
                 mountPath: /etc/ssl/certs/claire-root-ca.crt
+                subPath: claire-root-ca.crt
             volumes:
             - name: etc-ssl-certs
               configMap:
                 name: claire-root-ca.crt
+                items:
+                - key: claire-root-ca.crt
+                  path: claire-root-ca.crt
