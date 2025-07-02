@@ -4,4 +4,3 @@ resources:
   - ./auth/keycloak
   - ./observability/kube-prometheus-stack
   - ./proxmox
-  - ./networking/external-dns
