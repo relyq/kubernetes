@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - ./auth/keycloak
   - ./observability/kube-prometheus-stack
-  - ./proxmox
+  #- ./proxmox
