@@ -46,6 +46,9 @@ spec:
         userKey: grafana-admin-username
         passwordKey: grafana-admin-password
 
+      podAnnotations:
+        inject-certs: enabled
+
       envFromSecret: grafana-oauth
 
       assertNoLeakedSecrets: true

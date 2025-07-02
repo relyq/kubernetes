@@ -30,6 +30,8 @@ spec:
         enabled: true
         storageClass: longhorn-custom
         size: 4Gi
+      annotations:
+        inject-certs: enabled
 
     ui:
       enabled: true
