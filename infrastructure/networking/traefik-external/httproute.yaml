@@ -2,15 +2,15 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: dashboard-route
-  namespace: traefik
+  namespace: traefik-external
   annotations:
     external-dns.alpha.kubernetes.io/hostname: traefik.relyq.dev
 spec:
   hostnames:
     - traefik.relyq.dev
   parentRefs:
-    - name: gateway-internal
-      namespace: traefik
+    - name: gateway-external
+      namespace: traefik-external
       sectionName: websecure
   rules:
     - matches:
@@ -31,7 +31,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: oidc
-  namespace: traefik
+  namespace: traefik-external
   annotations:
     external-dns.alpha.kubernetes.io/hostname: auth.relyq.dev
 spec:
@@ -60,7 +60,7 @@ apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
   name: oidc
-  namespace: traefik
+  namespace: traefik-external
 spec:
   plugin:
     traefik-oidc-auth:
