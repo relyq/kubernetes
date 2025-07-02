@@ -26,6 +26,8 @@ spec:
   values:
     deployment:
       enabled: true
+      podAnnotations:
+        inject-certs: enabled
 
     experimental:
       plugins:
