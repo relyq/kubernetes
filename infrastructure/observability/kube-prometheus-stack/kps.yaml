@@ -30,6 +30,7 @@ spec:
           enabled: true
           annotations:
             external-dns.alpha.kubernetes.io/hostname: grafana.relyq.dev
+            external-dns.alpha.kubernetes.io/dns: pihole
           hostnames:
             - grafana.relyq.dev
           parentRefs:

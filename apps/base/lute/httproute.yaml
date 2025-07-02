@@ -5,6 +5,7 @@ metadata:
   namespace: lute
   annotations:
     external-dns.alpha.kubernetes.io/hostname: lute.relyq.dev
+    external-dns.alpha.kubernetes.io/dns: pihole
 spec:
   parentRefs:
     - name: gateway-internal

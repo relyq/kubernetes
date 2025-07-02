@@ -33,6 +33,7 @@ metadata:
   namespace: proxmox
   annotations:
     external-dns.alpha.kubernetes.io/hostname: pve.relyq.dev
+    external-dns.alpha.kubernetes.io/dns: pihole
 spec:
   parentRefs:
     - name: gateway-internal

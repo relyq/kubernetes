@@ -25,18 +25,13 @@ spec:
       - gateway-httproute
       - crd
 
-    provider: pihole
+    provider: cloudflare
 
-    pihole:
-      server: http://pi-hole-pihole-web.pi-hole.svc.cluster.local
-      secretName: pi-hole-password
-      tlsSkipVerify: true
-
-    extraEnvVars:
-      - name: EXTERNAL_DNS_PIHOLE_API_VERSION
-        value: "6"
+    cloudflare:
+      apiToken: urn:k8s:secret:cloudflare:api-token
+      email: urn:k8s:secret:cloudflare:email
 
     crd:
       create: true
 
-    annotationFilter: "external-dns.alpha.kubernetes.io/dns=pihole"
+    annotationFilter: "external-dns.alpha.kubernetes.io/dns=cloudflare"

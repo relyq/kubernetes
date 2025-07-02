@@ -5,6 +5,7 @@ metadata:
   namespace: keycloak
   annotations:
     external-dns.alpha.kubernetes.io/hostname: keycloak.relyq.dev
+    external-dns.alpha.kubernetes.io/dns: pihole
 spec:
   hostnames:
     - keycloak.relyq.dev
