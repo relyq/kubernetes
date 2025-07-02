@@ -23,6 +23,7 @@ spec:
   values:
     sources:
       - gateway-httproute
+      - crd
     provider: pihole
     pihole:
       server: http://pi-hole-pihole-web.pi-hole.svc.cluster.local
