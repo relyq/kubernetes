@@ -50,8 +50,6 @@ spec:
     - name: namespaces
     - name: crds
     - name: kyverno-policies
-    - name: cert-manager
-    - name: external-dns
   sourceRef:
     kind: GitRepository
     name: flux-system
