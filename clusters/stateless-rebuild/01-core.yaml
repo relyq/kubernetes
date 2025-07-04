@@ -10,7 +10,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: secrets
-    - name: snapshots
+    - name: snapshot-controller
     - name: longhorn
   sourceRef:
     kind: GitRepository
@@ -31,7 +31,7 @@ spec:
   timeout: 2m
   dependsOn:
     - name: namespaces
-    - name: snapshots
+    - name: snapshot-controller
   sourceRef:
     kind: GitRepository
     name: flux-system

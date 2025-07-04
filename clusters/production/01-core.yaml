@@ -10,7 +10,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: secrets
-    - name: snapshots
+    - name: snapshot-controller
     - name: longhorn
   sourceRef:
     kind: GitRepository
@@ -32,7 +32,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: traefik
-    - name: snapshots
+    - name: snapshot-controller
   sourceRef:
     kind: GitRepository
     name: flux-system
