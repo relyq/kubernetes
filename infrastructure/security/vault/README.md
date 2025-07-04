@@ -6,3 +6,5 @@
 - vault is stateful
   - don’t delete pods blindly, and always back up before doing upgrades or major config changes
 - least privilege always
+
+- i should enable client certs and do mTLS

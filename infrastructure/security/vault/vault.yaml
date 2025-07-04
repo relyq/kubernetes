@@ -32,6 +32,31 @@ spec:
         size: 4Gi
       annotations:
         inject-certs: enabled
+      volumeMounts:
+        - name: cluster-cert
+          mountPath: /etc/ssl/private
+          readOnly: true
+      volumes:
+        - name: cluster-cert
+          secret:
+            secretName: cluster-cert-secret
+
+      standalone:
+        enabled: true
+        config: |-
+          ui = true
+
+          listener "tcp" {
+            tls_disable = 0
+            tls_cert_file = "/etc/ssl/private/tls-cluster.crt"
+            tls_key_file = "/etc/ssl/private/tls-cluster.key"
+            tls_disable_client_certs = 1
+            address = "[::]:8200"
+            cluster_address = "[::]:8201"
+          }
+          storage "file" {
+            path = "/vault/data"
+          }
 
     ui:
       enabled: true
