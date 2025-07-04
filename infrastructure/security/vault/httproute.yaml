@@ -21,4 +21,4 @@ spec:
       backendRefs:
         - name: vault-ui
           kind: Service
-          port: 8200
+          port: 8203
