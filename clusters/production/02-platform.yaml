@@ -32,7 +32,6 @@ spec:
     - name: namespaces
     - name: secrets
     - name: postgres
-    - name: keycloak-init
     - name: cert-manager
     - name: kyverno-policies
   sourceRef:
