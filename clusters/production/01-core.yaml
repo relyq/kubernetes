@@ -1,29 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: velero
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  dependsOn:
-    - name: namespaces
-    - name: secrets
-    - name: snapshot-controller
-    - name: longhorn
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: ./infrastructure/backups/velero
-  prune: true
-  wait: true
----
-
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: longhorn
+  name: kyverno
   namespace: flux-system
 spec:
   interval: 1h
@@ -31,35 +9,10 @@ spec:
   timeout: 2m
   dependsOn:
     - name: namespaces
-    - name: traefik
-    - name: snapshot-controller
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/storage/longhorn
-  prune: true
-  wait: true
----
-
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: traefik
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 2m
-  dependsOn:
-    - name: namespaces
-    - name: cert-manager
-    - name: external-dns
-    - name: crds
-    - name: kyverno-policies
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: ./infrastructure/networking/traefik
+  path: ./infrastructure/security/kyverno
   prune: true
   wait: true
 ---
@@ -87,7 +40,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: kyverno
+  name: traefik
   namespace: flux-system
 spec:
   interval: 1h
@@ -95,10 +48,35 @@ spec:
   timeout: 2m
   dependsOn:
     - name: namespaces
+    - name: crds
+    - name: kyverno-policies
+    - name: cert-manager
+    - name: external-dns
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/security/kyverno
+  path: ./infrastructure/networking/traefik
+  prune: true
+  wait: true
+---
+
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: pi-hole
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 2m
+  dependsOn:
+    - name: namespaces
+    - name: kyverno-policies
+    - name: traefik
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/networking/pi-hole
   prune: true
   wait: true
 ---
@@ -114,11 +92,75 @@ spec:
   timeout: 2m
   dependsOn:
     - name: namespaces
-    - name: cert-manager
+    - name: kyverno-policies
+    - name: pi-hole
   sourceRef:
     kind: GitRepository
     name: flux-system
   path: ./infrastructure/networking/external-dns
+  prune: true
+  wait: true
+---
+
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: longhorn
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 2m
+  dependsOn:
+    - name: namespaces
+    - name: snapshot-controller
+    - name: traefik
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/storage/longhorn
+  prune: true
+  wait: true
+---
+
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: vault
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 2m
+  dependsOn:
+    - name: namespaces
+    - name: kyverno-policies
+    - name: longhorn
+    - name: traefik
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/security/vault
+  prune: true
+  wait: true
+---
+
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cert-manager
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 2m
+  dependsOn:
+    - name: namespaces
+    - name: kyverno-policies
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/networking/cert-manager
   prune: true
   wait: true
 ---
@@ -135,6 +177,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: cert-manager
+    - name: vault
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -146,55 +189,21 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cert-manager
+  name: velero
   namespace: flux-system
 spec:
   interval: 1h
   retryInterval: 1m
-  timeout: 2m
+  timeout: 5m
   dependsOn:
     - name: namespaces
+    - name: secrets
+    - name: snapshot-controller
+    - name: longhorn
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/networking/cert-manager
+  path: ./infrastructure/backups/velero
   prune: true
   wait: true
 ---
-
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: vault
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 2m
-  dependsOn:
-    - name: namespaces
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: ./infrastructure/security/vault
-  prune: true
-  wait: true
----
-
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: pi-hole
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 2m
-  dependsOn:
-    - name: namespaces
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: ./infrastructure/networking/pi-hole
-  prune: true
-  wait: true
