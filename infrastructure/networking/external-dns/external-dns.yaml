@@ -30,7 +30,7 @@ spec:
     pihole:
       server: http://pi-hole-pihole-web.pi-hole.svc.cluster.local
       secretName: pi-hole-password
-      tlsSkipVerify: true
+      tlsSkipVerify: true # shouldn't skip tls, but serving initial cert from pi-hole requires extra setup
 
     extraEnvVars:
       - name: EXTERNAL_DNS_PIHOLE_API_VERSION
