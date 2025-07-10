@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
   - ./gateway-api/gateway-api.yaml
   - ./snapshots/snapshots.yaml
+  - ./traefik/kubernetes-crd-rbac.yaml
+  - ./traefik/kubernetes-crd-definition-v1.yaml
