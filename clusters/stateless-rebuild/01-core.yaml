@@ -30,6 +30,7 @@ spec:
   dependsOn:
     - name: namespaces
     - name: snapshot-controller
+    - name: traefik
   sourceRef:
     kind: GitRepository
     name: flux-system
