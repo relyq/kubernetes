@@ -16,7 +16,16 @@ cd "$(dirname "$0")"
 # install k3s if not already installed
 if ! command -v k3s &> /dev/null; then
   echo "--- installing k3s"
-  curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik" sh -
+
+  TOKEN_FILE="./k3s-token"
+
+  if [[ ! -f "$TOKEN_FILE" ]]; then
+    echo "!! token file not found at $TOKEN_FILE"
+    exit 1
+  fi
+
+  K3S_TOKEN=$(cat "$TOKEN_FILE")
+  curl -sfL https://get.k3s.io | K3S_TOKEN="$K3S_TOKEN" sh -s - server --disable traefik --cluster-init
 fi
 
 # setup kubeconfigs
