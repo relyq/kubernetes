@@ -24,6 +24,10 @@ spec:
         namespace: traefik
       interval: 12h
   values:
+    logs:
+      general:
+        level: INFO
+
     deployment:
       enabled: true
       podAnnotations:
@@ -46,6 +50,22 @@ spec:
             to: websecure
             scheme: https
             permanent: true
+      netbird-relay:
+        port: 33080
+        expose:
+          default: true
+        exposedPort: 33080
+        protocol: TCP
+        tls:
+          enabled: true
+      netbird-signal:
+        port: 10000
+        expose:
+          default: true
+        exposedPort: 10000
+        protocol: TCP
+        tls:
+          enabled: true
 
     additionalArguments:
       - "--entryPoints.web.http.redirections.entryPoint.to=websecure"
