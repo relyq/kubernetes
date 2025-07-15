@@ -12,7 +12,6 @@ spec:
   values:
     sources:
       - gateway-httproute
-      - crd
 
     provider: cloudflare
 
