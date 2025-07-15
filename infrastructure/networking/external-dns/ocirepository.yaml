@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: external-dns
+  namespace: external-dns
+spec:
+  interval: 24h
+  url: oci://registry-1.docker.io/bitnamicharts/external-dns
+  ref:
+    semver: ">=8.8.5 <8.9.0"
