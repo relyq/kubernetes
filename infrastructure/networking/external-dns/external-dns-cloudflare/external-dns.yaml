@@ -21,7 +21,4 @@ spec:
       apiToken: urn:k8s:secret:cloudflare:api-token
       email: relyqx@gmail.com
 
-    crd:
-      create: true
-
     annotationFilter: "external-dns.alpha.kubernetes.io/dns=cloudflare"
