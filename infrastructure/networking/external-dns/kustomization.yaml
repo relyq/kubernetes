@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - ocirepository.yaml
   - ./external-dns-pihole
-  - ./external-dns-cloudflare
+  #- ./external-dns-cloudflare
