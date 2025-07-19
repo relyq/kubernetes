@@ -61,6 +61,28 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: traefik-external
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 2m
+  dependsOn:
+    - name: namespaces
+    - name: crds
+    - name: kyverno-policies
+    - name: traefik-internal
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/networking/traefik/traefik-external
+  prune: true
+  wait: true
+---
+
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: pi-hole
   namespace: flux-system
 spec:
@@ -96,29 +118,6 @@ spec:
     kind: GitRepository
     name: flux-system
   path: ./infrastructure/networking/external-dns
-  prune: true
-  wait: true
----
-
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: traefik-external
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 2m
-  dependsOn:
-    - name: namespaces
-    - name: crds
-    - name: kyverno-policies
-    - name: external-dns
-    - name: traefik-internal
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: ./infrastructure/networking/traefik/traefik-external
   prune: true
   wait: true
 ---
