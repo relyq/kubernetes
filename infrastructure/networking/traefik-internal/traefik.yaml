@@ -10,7 +10,7 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: traefik
+  name: traefik-internal
   namespace: traefik
 spec:
   interval: 30m
@@ -42,31 +42,51 @@ spec:
     providers:
       kubernetesGateway:
         enabled: true
+      kubernetesCRD:
+        enabled: true # needed for middlewares
+
+    gatewayClass:
+      enabled: true
+      name: traefik-internal
+
+    ingressClass:
+      enabled: false
+    gateway:
+      enabled: false
 
     ports:
       web:
+        port: 8000
+        exposedPort: 80
+        protocol: TCP
+        expose:
+          default: true
         redirections:
           entryPoint:
             to: websecure
             scheme: https
             permanent: true
-      netbird-relay:
-        port: 33080
+      websecure:
+        port: 8443
+        exposedPort: 443
+        protocol: TCP
         expose:
           default: true
+        tls:
+          enabled: true
+      netbird-relay:
+        port: 33080
         exposedPort: 33080
         protocol: TCP
+        expose:
+          default: true
         tls:
           enabled: true
       netbird-signal:
         port: 10000
-        expose:
-          default: true
         exposedPort: 10000
         protocol: TCP
+        expose:
+          default: true
         tls:
           enabled: true
-
-    additionalArguments:
-      - "--entryPoints.web.http.redirections.entryPoint.to=websecure"
-      - "--entryPoints.web.http.redirections.entryPoint.scheme=https"

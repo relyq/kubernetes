@@ -7,7 +7,7 @@ metadata:
     cert-manager.io/cluster-issuer: vault-issuer
     cert-manager.io/common-name: "*.relyq.dev"
 spec:
-  gatewayClassName: traefik
+  gatewayClassName: traefik-internal
   listeners:
     - name: web
       protocol: HTTP
