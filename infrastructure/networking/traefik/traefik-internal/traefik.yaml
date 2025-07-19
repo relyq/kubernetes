@@ -74,19 +74,3 @@ spec:
           default: true
         tls:
           enabled: true
-      netbird-relay:
-        port: 33080
-        exposedPort: 33080
-        protocol: TCP
-        expose:
-          default: true
-        tls:
-          enabled: true
-      netbird-signal:
-        port: 10000
-        exposedPort: 10000
-        protocol: TCP
-        expose:
-          default: true
-        tls:
-          enabled: true

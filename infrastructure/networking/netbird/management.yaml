@@ -35,7 +35,7 @@ spec:
   hostnames:
     - netbird.relyq.dev
   parentRefs:
-    - name: gateway-internal
+    - name: gateway-external
       namespace: traefik
       sectionName: websecure
   rules:
@@ -57,7 +57,7 @@ spec:
   hostnames:
     - netbird.relyq.dev
   parentRefs:
-    - name: gateway-internal
+    - name: gateway-external
       namespace: traefik
       sectionName: websecure
   rules:

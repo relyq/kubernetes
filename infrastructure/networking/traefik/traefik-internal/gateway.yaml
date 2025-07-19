@@ -29,27 +29,3 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
-    - name: netbird-grpc-signal
-      port: 10000
-      protocol: HTTPS
-      hostname: "*.relyq.dev"
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: wildcard-relyq-dev-tls-internal
-            kind: Secret
-      allowedRoutes:
-        namespaces:
-          from: All
-    - name: netbird-relay
-      port: 33080
-      protocol: HTTPS
-      hostname: "*.relyq.dev"
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: wildcard-relyq-dev-tls-internal
-            kind: Secret
-      allowedRoutes:
-        namespaces:
-          from: All
