@@ -31,6 +31,9 @@ kind: HTTPRoute
 metadata:
   name: dashboard-route
   namespace: netbird
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: netbird.relyq.dev
+    external-dns.alpha.kubernetes.io/dns: cloudflare
 spec:
   hostnames:
     - netbird.relyq.dev
