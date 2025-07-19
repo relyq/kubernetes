@@ -2,6 +2,4 @@
 
 traefik instance for external traefik
 
-not deployed at the moment. i have to remember to add the redirect url for the external instance dashboard to keycloak whenever i deploy this
-
-also change the hostname for the dashboard
+external traefik does not need a separate httproute - both dashboards show the same information
