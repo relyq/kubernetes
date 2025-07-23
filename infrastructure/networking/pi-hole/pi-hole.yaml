@@ -33,3 +33,6 @@ spec:
     serviceDns:
       type: LoadBalancer
       externalTrafficPolicy: Cluster
+
+    DNS1: "1.1.1.1"
+    DNS2: "8.8.8.8"
