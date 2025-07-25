@@ -42,6 +42,7 @@ spec:
     providers:
       kubernetesGateway:
         enabled: true
+        labelselector: "traefik.kubernetes.io/instance=traefik-internal"
       kubernetesCRD:
         enabled: true # needed for middlewares
 
