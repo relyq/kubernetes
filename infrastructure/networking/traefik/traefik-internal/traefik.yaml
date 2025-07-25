@@ -16,7 +16,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: traefik-internal
+      chart: traefik
       version: ">=35.4.0 <36.3.0"
       sourceRef:
         kind: HelmRepository
