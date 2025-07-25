@@ -6,7 +6,12 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: traefik
+  name: traefik-internal
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: traefik-external
 ---
 apiVersion: v1
 kind: Namespace

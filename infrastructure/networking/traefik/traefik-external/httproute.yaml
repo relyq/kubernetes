@@ -2,7 +2,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: dashboard-external-route
-  namespace: traefik
+  namespace: traefik-external
   annotations:
     external-dns.alpha.kubernetes.io/hostname: traefik-external.relyq.dev
     external-dns.alpha.kubernetes.io/dns: pihole
@@ -11,7 +11,7 @@ spec:
     - traefik-external.relyq.dev
   parentRefs:
     - name: gateway-internal
-      namespace: traefik
+      namespace: traefik-internal
       sectionName: websecure
   rules:
     - matches:

@@ -37,7 +37,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway-internal
-      namespace: traefik
+      namespace: traefik-internal
       sectionName: websecure
   hostnames:
     - pve.relyq.dev

@@ -35,7 +35,7 @@ spec:
             - grafana.relyq.dev
           parentRefs:
             - name: gateway-internal
-              namespace: traefik
+              namespace: traefik-internal
               sectionName: websecure
           matches:
             - path:

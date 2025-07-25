@@ -20,5 +20,5 @@ spec:
           port: 80
   parentRefs:
     - name: gateway-external
-      namespace: traefik
+      namespace: traefik-external
       sectionName: websecure

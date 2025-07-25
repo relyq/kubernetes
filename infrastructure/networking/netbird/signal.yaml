@@ -36,7 +36,7 @@ spec:
     - netbird.relyq.dev
   parentRefs:
     - name: gateway-external
-      namespace: traefik
+      namespace: traefik-external
       sectionName: netbird-grpc-signal
   rules:
     - matches:
