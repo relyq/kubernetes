@@ -4,4 +4,4 @@ resources:
   - ./auth/keycloak
   - ./observability/kube-prometheus-stack
   - ./networking/netbird
-  #- ./proxmox
+  - ./proxmox
