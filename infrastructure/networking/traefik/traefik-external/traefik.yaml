@@ -15,6 +15,10 @@ spec:
         namespace: traefik-internal
       interval: 12h
   values:
+    logs:
+      general:
+        level: INFO
+
     deployment:
       enabled: true
       podAnnotations:
@@ -29,18 +33,56 @@ spec:
     providers:
       kubernetesGateway:
         enabled: true
-        labelselector: "traefik.kubernetes.io/instance=traefik-external"
+        labelselector: "app.kubernetes.io/instance=traefik-external-traefik-external"
       kubernetesCRD:
         enabled: true # needed for middlewares
 
     gatewayClass:
       enabled: true
       name: traefik-external
-
     ingressClass:
       enabled: false
+
     gateway:
-      enabled: false
+      enabled: true
+      name: gateway-external
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-dns
+        external-dns.alpha.kubernetes.io/target: "x.relyq.dev"
+        external-dns.alpha.kubernetes.io/dns: cloudflare
+      listeners:
+        web:
+          port: 8000
+          protocol: HTTP
+          hostname: "*.relyq.dev"
+          namespacePolicy: All
+        websecure:
+          port: 8443
+          protocol: HTTPS
+          hostname: "*.relyq.dev"
+          mode: Terminate
+          certificateRefs:
+            - name: wildcard-relyq-dev-tls-external
+              kind: Secret
+          namespacePolicy: All
+        netbird-grpc-signal:
+          port: 10000
+          protocol: HTTPS
+          hostname: "*.relyq.dev"
+          mode: Terminate
+          certificateRefs:
+            - name: wildcard-relyq-dev-tls-external
+              kind: Secret
+          namespacePolicy: All
+        netbird-relay:
+          port: 33080
+          protocol: HTTPS
+          hostname: "*.relyq.dev"
+          mode: Terminate
+          certificateRefs:
+            - name: wildcard-relyq-dev-tls-external
+              kind: Secret
+          namespacePolicy: All
 
     service:
       externalTrafficPolicy: Local

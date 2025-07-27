@@ -42,18 +42,36 @@ spec:
     providers:
       kubernetesGateway:
         enabled: true
-        labelselector: "traefik.kubernetes.io/instance=traefik-internal"
+        labelselector: "app.kubernetes.io/instance=traefik-internal-traefik-internal"
       kubernetesCRD:
         enabled: true # needed for middlewares
 
     gatewayClass:
       enabled: true
       name: traefik-internal
-
     ingressClass:
       enabled: false
+
     gateway:
-      enabled: false
+      enabled: true
+      name: gateway-internal
+      annotations:
+        cert-manager.io/cluster-issuer: vault-issuer
+        cert-manager.io/common-name: "*.relyq.dev"
+      listeners:
+        web:
+          port: 8000
+          protocol: HTTP
+          hostname: "*.relyq.dev"
+          namespacePolicy: All
+        websecure:
+          port: 8443
+          protocol: HTTPS
+          hostname: "*.relyq.dev"
+          mode: Terminate
+          certificateRefs:
+            - name: wildcard-relyq-dev-tls-internal
+          namespacePolicy: All
 
     ports:
       web:

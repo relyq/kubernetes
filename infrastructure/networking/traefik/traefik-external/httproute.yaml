@@ -10,8 +10,8 @@ spec:
   hostnames:
     - traefik-external.relyq.dev
   parentRefs:
-    - name: gateway-internal
-      namespace: traefik-internal
+    - name: gateway-external
+      namespace: traefik-external
       sectionName: websecure
   rules:
     - matches:
