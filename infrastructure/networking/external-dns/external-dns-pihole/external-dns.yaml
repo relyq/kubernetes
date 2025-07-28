@@ -12,6 +12,7 @@ spec:
   values:
     sources:
       - gateway-httproute
+      - crd
 
     provider: pihole
 
@@ -25,3 +26,6 @@ spec:
         value: "6"
 
     annotationFilter: "external-dns.alpha.kubernetes.io/dns=pihole"
+
+    crd:
+      create: true

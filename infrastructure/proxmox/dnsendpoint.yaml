@@ -1,0 +1,29 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: claire
+  namespace: proxmox
+  annotations:
+    external-dns.alpha.kubernetes.io/dns: pihole
+spec:
+  endpoints:
+  - dnsName: claire.relyq.dev
+    recordTTL: 300
+    recordType: A
+    targets:
+    - 192.168.0.4
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: heimdall
+  namespace: proxmox
+  annotations:
+    external-dns.alpha.kubernetes.io/dns: pihole
+spec:
+  endpoints:
+  - dnsName: heimdall.relyq.dev
+    recordTTL: 300
+    recordType: A
+    targets:
+    - 192.168.1.100
