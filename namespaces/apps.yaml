@@ -8,3 +8,7 @@ kind: Namespace
 metadata:
   name: lute
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lute-gos

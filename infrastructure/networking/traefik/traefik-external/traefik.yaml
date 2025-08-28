@@ -65,6 +65,15 @@ spec:
             - name: wildcard-relyq-dev-tls-external
               kind: Secret
           namespacePolicy: All
+        websecure-gosoncio-dev:
+          port: 8443
+          protocol: HTTPS
+          hostname: "*.gosoncio.dev"
+          mode: Terminate
+          certificateRefs:
+            - name: wildcard-gosoncio-dev-tls-external
+              kind: Secret
+          namespacePolicy: All
         netbird-grpc-signal:
           port: 10000
           protocol: HTTPS
