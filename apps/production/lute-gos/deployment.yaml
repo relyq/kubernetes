@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lute
+  namespace: lute-gos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lute
+  template:
+    metadata:
+      labels:
+        app: lute
+    spec:
+      containers:
+        - name: lute
+          image: jzohrab/lute3:3.10.1
+          volumeMounts:
+            - name: data
+              mountPath: /lute_data
+            - name: backups
+              mountPath: /lute_backup
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: lute-data
+        - name: backups
+          persistentVolumeClaim:
+            claimName: lute-backups
