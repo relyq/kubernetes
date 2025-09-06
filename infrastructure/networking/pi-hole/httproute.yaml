@@ -19,6 +19,6 @@ spec:
           kind: Service
           port: 80
   parentRefs:
-    - name: gateway-internal
-      namespace: traefik-internal
+    - name: gateway-external
+      namespace: traefik-external
       sectionName: websecure

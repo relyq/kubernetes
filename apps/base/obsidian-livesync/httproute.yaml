@@ -25,8 +25,8 @@ spec:
             kind: Middleware
             name: obsidiancors
   parentRefs:
-    - name: gateway-internal
-      namespace: traefik-internal
+    - name: gateway-external
+      namespace: traefik-external
       sectionName: websecure
 ---
 apiVersion: traefik.io/v1alpha1
