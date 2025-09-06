@@ -10,6 +10,8 @@ spec:
     name: external-dns
     namespace: external-dns
   values:
+    logLevel: debug
+
     sources:
       - gateway-httproute
 
