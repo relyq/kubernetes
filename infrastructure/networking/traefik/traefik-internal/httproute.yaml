@@ -5,7 +5,7 @@ metadata:
   namespace: traefik-internal
   annotations:
     external-dns.alpha.kubernetes.io/hostname: traefik.relyq.dev
-    external-dns.alpha.kubernetes.io/dns: pihole
+    external-dns.alpha.kubernetes.io/dns: cloudflare
 spec:
   hostnames:
     - traefik.relyq.dev
@@ -35,7 +35,7 @@ metadata:
   namespace: traefik-internal
   annotations:
     external-dns.alpha.kubernetes.io/hostname: auth.relyq.dev
-    external-dns.alpha.kubernetes.io/dns: pihole
+    external-dns.alpha.kubernetes.io/dns: cloudflare
 spec:
   hostnames:
     - auth.relyq.dev

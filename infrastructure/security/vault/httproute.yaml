@@ -5,7 +5,7 @@ metadata:
   namespace: vault
   annotations:
     external-dns.alpha.kubernetes.io/hostname: vault.relyq.dev
-    external-dns.alpha.kubernetes.io/dns: pihole
+    external-dns.alpha.kubernetes.io/dns: cloudflare
 spec:
   hostnames:
     - vault.relyq.dev

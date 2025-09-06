@@ -5,7 +5,7 @@ metadata:
   namespace: longhorn
   annotations:
     external-dns.alpha.kubernetes.io/hostname: longhorn.relyq.dev
-    external-dns.alpha.kubernetes.io/dns: pihole
+    external-dns.alpha.kubernetes.io/dns: cloudflare
 spec:
   parentRefs:
     - name: gateway-internal

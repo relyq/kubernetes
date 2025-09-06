@@ -4,8 +4,8 @@ metadata:
   name: route
   namespace: pi-hole
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: pi-hole.relyq.dev
-    external-dns.alpha.kubernetes.io/dns: pihole
+    external-dns.alpha.kubernetes.io/hostname: pihole.relyq.dev
+    external-dns.alpha.kubernetes.io/dns: cloudflare
 spec:
   hostnames:
     - pi-hole.relyq.dev

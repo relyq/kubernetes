@@ -5,7 +5,7 @@ metadata:
   namespace: obsidian-livesync
   annotations:
     external-dns.alpha.kubernetes.io/hostname: obsidian-livesync.relyq.dev
-    external-dns.alpha.kubernetes.io/dns: pihole
+    external-dns.alpha.kubernetes.io/dns: cloudflare
 spec:
   hostnames:
     - obsidian-livesync.relyq.dev
