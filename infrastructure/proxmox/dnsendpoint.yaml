@@ -4,7 +4,7 @@ metadata:
   name: claire
   namespace: proxmox
   annotations:
-    external-dns.alpha.kubernetes.io/dns: cloudflare
+    external-dns.alpha.kubernetes.io/dns: pihole
 spec:
   endpoints:
   - dnsName: claire.relyq.dev
@@ -19,7 +19,7 @@ metadata:
   name: heimdall
   namespace: proxmox
   annotations:
-    external-dns.alpha.kubernetes.io/dns: cloudflare
+    external-dns.alpha.kubernetes.io/dns: pihole
 spec:
   endpoints:
   - dnsName: heimdall.relyq.dev
