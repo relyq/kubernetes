@@ -8,7 +8,7 @@ metadata:
     external-dns.alpha.kubernetes.io/dns: cloudflare
 spec:
   hostnames:
-    - pi-hole.relyq.dev
+    - pihole.relyq.dev
   rules:
     - matches:
       - path:
