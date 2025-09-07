@@ -71,5 +71,6 @@ done
 echo "--> CouchDB initialization complete."
 
 
-# export hostname=https://obsidian-livesync.relyq.dev && export database=obsidian && export passphrase=cyfR9E2HUZdcokomtVHD && export username=relyq && export password=w4FsWfSJCahmXrQDSsd2 && deno run -A https://raw.githubusercontent.com/vrtmrz/obsidian-livesync/main/utils/flyio/generate_setupuri.ts
+# docker run -it denoland/deno:2.4.5 sh
+# export hostname=https://obsidian-livesync.relyq.dev && export database=obsidian && export passphrase= && export username=relyq && export password= && deno run -A https://raw.githubusercontent.com/vrtmrz/obsidian-livesync/main/utils/flyio/generate_setupuri.ts
 # curl -i -X OPTIONS https://obsidian-livesync.relyq.dev -H "Origin: app://obsidian.md" -H "Access-Control-Request-Method: PUT" -H "Access-Control-Request-Headers: authorization,content-type"
