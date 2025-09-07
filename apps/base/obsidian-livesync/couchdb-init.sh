@@ -4,7 +4,7 @@ set -euo pipefail
 
 hostname=https://obsidian-livesync.relyq.dev
 username=relyq
-password=w4FsWfSJCahmXrQDSsd2
+password=
 
 echo "--> Enabling single-node mode..."
 
